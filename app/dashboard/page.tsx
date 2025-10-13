@@ -5,7 +5,7 @@ import VercelAnalyticsDashboard from "@/components/dashboard";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { User } from "@supabase/supabase-js";
+import { SupabaseClient, User } from "@supabase/supabase-js";
 
 export default function Home() {
 const [user, setUser] = useState<User | null>(null);
@@ -26,7 +26,6 @@ const [user, setUser] = useState<User | null>(null);
       setUser(user);
       setLoading(false);
     };
-
     checkAuth();
   }, [router, supabase]);
 
@@ -51,6 +50,9 @@ const [user, setUser] = useState<User | null>(null);
           <h2 className="text-xl font-semibold text-gray-900 mb-4">
             Welcome back, {user?.email}
           </h2>
+          <p className="text-gray-600 mb-4">
+            Last sign in: {user?.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleString() : 'N/A'}
+          </p>
           <div className="flex gap-5 left-15 relative">
           <button
             onClick={handleLogout}
@@ -58,10 +60,12 @@ const [user, setUser] = useState<User | null>(null);
           >
             Logout
           </button>
+          <Link href="/dashboard/account">
           <button
           className="px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-foreground hover:bg-blue-700">
             Manage account
           </button>
+          </Link>
           </div>
         </div>
       </main>

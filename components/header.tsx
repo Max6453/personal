@@ -10,7 +10,7 @@ export default function Header() {
     <div>
         <header className="bg-foreground top-0 relative">
         <div className="text-start p-5">
-          <h1 className="text-6xl">Personal</h1>
+          <h1 className="text-6xl">Webhub</h1>
           <h3 className="text-4xl">Modern dashboard for developers</h3>
         </div>
         <button
@@ -37,7 +37,7 @@ export default function Header() {
                         <button
                           type="button"
                           onClick={() => setOpen(false)}
-                          className="relative right-0 z-50 rounded-md text-gray-400 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                          className="relative right-0 z-50 rounded-md text-gray-400 hover:text-red-500 hover:rotate-90 duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                         >
                           <span className="absolute -inset-2.5" />
                           <span className="sr-only">Close panel</span>
@@ -45,20 +45,35 @@ export default function Header() {
                         </button>
                       </div>
                     </TransitionChild>
-                    <div className="relative flex h-full flex-col overflow-y-auto bg-gray-800 py-6 shadow-xl after:absolute after:inset-y-0 after:left-0 after:w-px after:bg-white/10">
-                      <div className="px-4 sm:px-6">
-                        <DialogTitle className="font-semibold text-white">Panel title</DialogTitle>
+                    <div className="relative flex h-full flex-col overflow-y-auto bg-background text-foreground border-r-4 border-foreground py-6 shadow-xl after:absolute after:inset-y-0 after:left-0 after:w-px after:bg-white/10">
+                      <div className="px-2 sm:px-6">
+                        <DialogTitle className="font-semibold text-2xl text-foreground">Webhub</DialogTitle>
                       </div>
-                      <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                      <div className="relative mt-6 text-2xl flex flex-col flex-1 gap-y-15 px-4 sm:px-6">
                         <ul>
-                          <li>
-                            <Link href="/Widgets">Widgets</Link>
+                          <h3 className="text-4xl">Useful widgets</h3>
+                          <li className="pl-5">
+                            <Link href="/Widgets">Weather</Link>
                           </li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
+                          <li className="pl-5">
+                            <Link href="/Widgets">Notes</Link>
+                          </li>
+                          <li className="pl-5">
+                            <Link href="/Widgets">To-Do</Link>
+                          </li>
+                          <h3 className="text-4xl">Services</h3>
+                          <li className="pl-5">
+                            <Link href="/resources/vercel">Vercel</Link>
+                          </li>
+                          <li className="pl-5">
+                            <Link href="/resources/supabase">Supabase</Link>
+                          </li>
+                          <li className="pl-5">
+                            <Link href="/resources/github">Github</Link>
+                          </li>
+                          <li>
+                            <Link href="/dashboard/account">Settings</Link>
+                          </li>
                         </ul>
                       </div>
                     </div>
