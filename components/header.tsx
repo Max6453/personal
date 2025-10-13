@@ -9,7 +9,7 @@ export default function Header() {
     return(
     <div>
         <header className="bg-foreground top-0 relative">
-        <div className="text-start p-5">
+        <div className="text-start text-background p-5">
           <h1 className="text-6xl">Webhub</h1>
           <h3 className="text-4xl">Modern dashboard for developers</h3>
         </div>

@@ -113,22 +113,12 @@ export default function Example() {
           />
         </div>
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-              Announcing our next round of funding.{' '}
-              <a href="#" className="font-semibold text-indigo-400">
-                <span aria-hidden="true" className="absolute inset-0" />
-                Read more <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-          </div>
           <div className="text-center">
-            <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">
-              Data to enrich your online business
+            <h1 className="text-5xl font-semibold tracking-tight text-balance font-work-sans text-white sm:text-7xl">
+              WEBHUB
             </h1>
             <p className="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-              fugiat veniam occaecat.
+              A modern dashboard made by developer, for developers
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
@@ -154,6 +144,27 @@ export default function Example() {
             }}
             className="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
           />
+        </div>
+      </div>
+
+      <div className='grid grid-cols-2 bg-background h-screen'>
+        <div className='relative flex flex-col gap-5 p-5 text-lg top-18'>
+        <p>
+        Stop switching between countless tabs and dashboards. WebHub brings all your favorite developer tools together — GitHub, Vercel, Supabase, and more — into one unified, minimal workspace.
+        </p>
+        Whether you’re deploying projects, checking your repositories, or monitoring your databases, WebHub gives you a clear overview of your entire development ecosystem in real time.
+        <p>
+        Built for modern developers who value simplicity, performance, and focus — WebHub helps you manage your workflow without distractions.
+        Connect your accounts once, and gain instant access to analytics, activity logs, and project insights — all from one clean interface.
+        </p>
+        <p>
+        Your development life, finally in one place.
+        </p>
+        </div>
+        <div className='relative top-20 pl-1'>
+          <img
+          className='rounded-xl'
+          src="/template.png"/>
         </div>
       </div>
     </div>
