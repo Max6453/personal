@@ -1,26 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Settings, LogOut, Key, User, Mail, Shield, ExternalLink } from 'lucide-react';
 import { Connection } from '@/types/dashboard';
 import ConnectionCard from '@/app/resources/components/connection-card';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase';
-
 interface SettingsPageProps {
-  connections?: Connection[];
   user?: any;
   onLogout?: () => void;
-  onConnect?: (id: string, token: string) => void;
-  onDisconnect?: (id: string) => void;
 }
 
 export default function SettingsPage({ 
-  connections = [], 
   user = null, 
-  onLogout = () => {}, 
-  onConnect = () => {}, 
-  onDisconnect = () => {} 
+  onLogout = () => {}
 }: SettingsPageProps) {
   const [activeTab, setActiveTab] = useState('account');
   const [email, setEmail] = useState(user?.email || '');
@@ -29,7 +22,43 @@ export default function SettingsPage({
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState({ type: '', text: '' });
   const [isLoading, setIsLoading] = useState(false);
+  const [connections, setConnections] = useState<Connection[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('platform_connections');
+      if (saved) return JSON.parse(saved);
+    }
+    return [
+      { id: 'vercel', platform: 'vercel', name: 'Vercel Deployments', isConnected: false },
+      { id: 'supabase', platform: 'supabase', name: 'Database & Auth', isConnected: false },
+      { id: 'github', platform: 'github', name: 'GitHub Profile', isConnected: false },
+    ];
+  });
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('platform_connections', JSON.stringify(connections));
+    }
+  }, [connections]);
+
+  const handleConnect = (id: string, token: string) => {
+    setConnections((prev) =>
+      prev.map((c) =>
+        c.id === id ? { ...c, isConnected: true, connectedAt: new Date().toLocaleDateString(), token } : c
+      )
+    );
+  };
+
+  const handleDisconnect = (id: string) => {
+    setConnections((prev) =>
+      prev.map((c) =>
+        c.id === id ? { ...c, isConnected: false, connectedAt: undefined, token: undefined } : c
+      )
+    );
+  };
+
+  const vercelToken = connections.find((c: Connection) => c.id === 'vercel')?.token;
+  const supabaseToken = connections.find((c: Connection) => c.id === 'supabase')?.token;
+  const githubToken = connections.find((c: Connection) => c.id === 'github')?.token;
   const supabase = createClient();
 
   const updateEmail = async (e: React.FormEvent) => {
@@ -75,13 +104,13 @@ export default function SettingsPage({
             <h2 className="text-3xl font-bold text-gray-900">Account Settings</h2>
             <p className="text-gray-600 mt-1">Manage your account and connected services</p>
           </div>
+          <Link href="/dashboard">
           <button
-            onClick={onLogout}
             className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-medium"
           >
-            <LogOut className="w-4 h-4" />
-            Sign Out
+            Return
           </button>
+          </Link>
         </div>
 
         {message.text && (
@@ -211,8 +240,8 @@ export default function SettingsPage({
                   <ConnectionCard
                     key={connection.id}
                     connection={connection}
-                    onConnect={onConnect}
-                    onDisconnect={onDisconnect}
+                    onConnect={handleConnect}
+                    onDisconnect={handleDisconnect}
                   />
                 ))
               ) : (

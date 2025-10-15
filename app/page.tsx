@@ -15,7 +15,7 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-foreground to-neutral-800 to-70% bg-linear-180 h-screen font-work-sans">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
@@ -32,7 +32,7 @@ export default function Example() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-200"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
             >
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="size-6" />
@@ -40,13 +40,13 @@ export default function Example() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-white">
+              <a key={item.name} href={item.href} className="text-sm/6 font-semibold">
                 {item.name}
               </a>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/auth/login" className="text-sm/6 font-semibold text-white">
+            <a href="/auth/login" className="text-sm/6 font-semibold">
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
@@ -100,18 +100,6 @@ export default function Example() {
       </header>
 
       <div className="relative isolate px-6 pt-14 lg:px-8">
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-        >
-          <div
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-            className="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"
-          />
-        </div>
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="text-center">
             <h1 className="text-5xl font-semibold tracking-tight text-balance font-work-sans text-white sm:text-7xl">
@@ -122,33 +110,17 @@ export default function Example() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="#"
-                className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                href="/auth/signup"
+                className="rounded-md border border-gray-300 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-foreground duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
                 Get started
-              </a>
-              <a href="#" className="text-sm/6 font-semibold text-white">
-                Learn more <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>
         </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        >
-          <div
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-            className="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
-          />
-        </div>
       </div>
-
-      <div className='grid grid-cols-2 bg-background h-screen'>
-        <div className='relative flex flex-col gap-5 p-5 text-lg top-18'>
+      <div className='bg-neutral-800 h-150'>
+        <div className='relative flex flex-col gap-5 p-5 text-lg text-gray-300 text-center top-18'>
         <p>
         Stop switching between countless tabs and dashboards. WebHub brings all your favorite developer tools together — GitHub, Vercel, Supabase, and more — into one unified, minimal workspace.
         </p>
@@ -161,11 +133,30 @@ export default function Example() {
         Your development life, finally in one place.
         </p>
         </div>
-        <div className='relative top-20 pl-1'>
-          <img
-          className='rounded-xl'
-          src="/template.png"/>
+      </div>
+      <div className='bg-neutral-800 to-foreground to-100% bg-linear-180 h-screen'>
+        <div className='grid grid-cols-2 relative top-30 gap-5 pl-35'>
+          <div className='border border-gray-400 rounded-2xl w-120'>
+            <h1 className='text-3xl p-5'>Minimalistic</h1>
+            <p className='p-5 blur-sm hover:blur-none duration-300'>Webhub's is clean, minimalistic and simple in design and working in it.</p>
+          </div>
+          <div className='border border-gray-400 rounded-2xl w-120'>
+            <h1 className='text-3xl p-5'>Monitor</h1>
+            <p className='p-5 blur-sm hover:blur-none duration-300'>You can monitor your deployments and web analytics trough our simple dashboard</p>
+          </div>
+          <div className='border border-gray-400 rounded-2xl w-120'>
+            <h1 className='text-3xl p-5'>Connections</h1>
+            <p className='p-5 blur-sm hover:blur-none duration-300'>If it's either supabase, vercel, github, or other service, We got you covered. </p>
+          </div>
+          <div className='border border-gray-400 rounded-2xl w-120'>
+            <h1 className='text-3xl p-5'>EISD</h1>
+            <p className='p-5 blur-sm hover:blur-none duration-300'>Everything.In.Simple.Dashboard</p>
+          </div>
         </div>
+      </div>
+
+      <div className='h-screen bg-foreground'>
+        <h3 className='text-3xl font-roboto font-bold p-5'>Contact</h3>
       </div>
     </div>
   )

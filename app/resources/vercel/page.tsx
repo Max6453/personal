@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { getPlatformToken, savePlatformToken, deletePlatformToken } from '@/lib/platform-tokens';
 import VercelDashboard from '@/app/resources/components/vercel-dashboard';
 import Link from 'next/link';
+import Header from '@/components/sideHeader';
+
 export default function VercelPage() {
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -75,14 +77,9 @@ export default function VercelPage() {
   }
 
   return (
+    <div>
+      <Header/>
     <div className="p-6">
-        <div className='backdrop-blur-2xl focus:bg-amber-400 relative'>
-            <Link href="/dashboard">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6 absolute">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-            </svg>
-            </Link>
-        </div>
       <div className="flex justify-between items-center mb-6 pt-5">
         <h1 className="text-2xl font-bold text-gray-900">Vercel Dashboard</h1>
         <button
@@ -94,5 +91,6 @@ export default function VercelPage() {
       </div>
       <VercelDashboard token={token} />
     </div>
+  </div>
   );
 }

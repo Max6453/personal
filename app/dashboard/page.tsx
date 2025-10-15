@@ -63,7 +63,7 @@ const [user, setUser] = useState<User | null>(null);
           <Link href="/dashboard/account">
           <button
           className="px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-foreground hover:bg-blue-700">
-            Manage account
+            Settings
           </button>
           </Link>
           </div>
@@ -72,6 +72,11 @@ const [user, setUser] = useState<User | null>(null);
       <section>
         <VercelAnalyticsDashboard />
       </section>
+
+      <section>Your feed</section>
+      <article>
+        
+      </article>
     </div>
   );
 }
