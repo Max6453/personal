@@ -1,11 +1,40 @@
 'use client'
 import Link from "next/link";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle, TransitionChild } from '@headlessui/react'
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function Header() {
     const [open, setOpen] = useState(false)
+    const [currentTime, setCurrentTime] = useState<Date>(new Date());
+    
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setCurrentTime(new Date());
+        }, 1000);
+    
+        return () => clearInterval(timer);
+      }, []);
+
+    const formatTime = (date: Date): string => {
+    return date.toLocaleTimeString('sk-SK', {
+      timeZone: 'Europe/Bratislava',
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+  };
+
+  const formatDate = (date: Date): string => {
+    return date.toLocaleDateString('sk-SK', {
+      timeZone: 'Europe/Bratislava',
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
     return(
     <div>
         <header className="bg-foreground top-0 relative">
@@ -75,6 +104,16 @@ export default function Header() {
                             <Link href="/dashboard/account">Settings</Link>
                           </li>
                         </ul>
+                      </div>
+                      <div className="text-center bottom-5 w-80 left-5 absolute backdrop-blur-md rounded-3xl shadow-background border-foreground border">
+                         <div className="mb-4">
+                          <h1 className="text-2xl font-mono font-bold text-foreground tracking-wider">
+                            {formatTime(currentTime)}
+                          </h1>
+                          <p className="text-xl text-foreground font-light">
+                            {formatDate(currentTime)}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </DialogPanel>

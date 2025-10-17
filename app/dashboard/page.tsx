@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { SupabaseClient, User } from "@supabase/supabase-js";
+import AnalyticsDashboard from "@/components/vercel/quickDashboard";
 
 export default function Home() {
-const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const supabase = createClient();
+
   useEffect(() => {
     const checkAuth = async () => {
       const {
@@ -73,9 +75,11 @@ const [user, setUser] = useState<User | null>(null);
         <VercelAnalyticsDashboard />
       </section>
 
-      <section>Your feed</section>
+      <section className="p-10">
+       <h1 className="text-4xl font-bold font-work-sans">Latest analytics</h1>
+      </section>
       <article>
-        
+        <AnalyticsDashboard/>
       </article>
     </div>
   );
