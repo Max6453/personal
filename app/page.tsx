@@ -15,8 +15,8 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="bg-foreground to-neutral-800 to-70% bg-linear-180 h-screen font-work-sans">
-      <header className="absolute inset-x-0 top-0 z-50">
+    <div className="bg-foreground to-neutral-800 to-70% bg-linear-180 h-screen font-work-sans snap-start">
+      <header className="absolute inset-x-0 top-0 z-50 snap-start">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
@@ -99,8 +99,8 @@ export default function Example() {
         </Dialog>
       </header>
 
-      <div className="relative isolate px-6 pt-14 lg:px-8">
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+      <div className="relative isolate px-6 pt-14 lg:px-8 ">
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 snap-start">
           <div className="text-center">
             <h1 className="text-5xl font-semibold tracking-tight text-balance font-work-sans text-white sm:text-7xl">
               WEBHUB
@@ -119,7 +119,7 @@ export default function Example() {
           </div>
         </div>
       </div>
-      <div className='bg-neutral-800 h-150'>
+      <div className='bg-neutral-800 h-screen pt-30 snap-start'>
         <div className='relative flex flex-col gap-5 p-5 text-lg text-gray-300 text-center top-18'>
         <p>
         Stop switching between countless tabs and dashboards. WebHub brings all your favorite developer tools together — GitHub, Vercel, Supabase, and more — into one unified, minimal workspace.
@@ -134,7 +134,7 @@ export default function Example() {
         </p>
         </div>
       </div>
-      <div className='bg-neutral-800 to-foreground to-100% bg-linear-180 h-screen'>
+      <div className='bg-neutral-800 to-foreground to-100% bg-linear-180 h-screen snap-start'>
         <div className='grid grid-cols-2 relative top-30 gap-5 pl-35'>
           <div className='border border-gray-400 rounded-2xl w-120'>
             <h1 className='text-3xl p-5'>Minimalistic</h1>
@@ -155,7 +155,7 @@ export default function Example() {
         </div>
       </div>
 
-      <div className='h-screen bg-foreground'>
+      <div className='h-screen bg-foreground snap-start'>
         <h3 className='text-3xl font-roboto font-bold p-5'>Contact</h3>
       </div>
     </div>

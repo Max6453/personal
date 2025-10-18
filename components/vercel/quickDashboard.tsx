@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { TrendingUp, Users, Eye, MousePointerClick, Globe, Clock, RefreshCw } from 'lucide-react';
+import { TrendingUp, Users, Eye, MousePointerClick, Globe, Clock, RefreshCw, AlertCircle } from 'lucide-react';
 
 interface AnalyticsData {
   series: Array<{ date: string; visitors: number; pageViews: number }>;
@@ -22,55 +22,10 @@ type TimeRange = '24h' | '7d' | '30d' | '90d';
 const AnalyticsDashboard = () => {
   const [timeRange, setTimeRange] = useState<TimeRange>('7d');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState(new Date());
-  const [useRealData, setUseRealData] = useState(false);
 
   const PROJECT_ID = process.env.NEXT_PUBLIC_VERCEL_PROJECT_ID || '';
-  const TEAM_ID = process.env.NEXT_PUBLIC_VERCEL_TEAM_ID || '';
-
-  // Fetch real data from your API route
-  const fetchRealData = async () => {
-    if (!PROJECT_ID) {
-      setError('Project ID not configured');
-      return null;
-    }
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      const daysMap = { '24h': 1, '7d': 7, '30d': 30, '90d': 90 };
-      const days = daysMap[timeRange];
-      const to = Date.now();
-      const from = to - days * 24 * 60 * 60 * 1000;
-
-      const params = new URLSearchParams({
-        projectId: PROJECT_ID,
-        from: String(from),
-        to: String(to),
-      });
-
-      if (TEAM_ID) {
-        params.append('teamId', TEAM_ID);
-      }
-
-      const response = await fetch(`/api/analytics?${params.toString()}`);
-      
-      if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setLastUpdated(new Date());
-      return data;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch data');
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  };
+  const isPro = false; // Set to true if you upgrade to Pro plan
 
   // Generate mock data
   const generateMockData = (): AnalyticsData => {
@@ -132,19 +87,18 @@ const AnalyticsDashboard = () => {
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData>(generateMockData());
 
   useEffect(() => {
-    const loadData = async () => {
-      if (useRealData) {
-        const data = await fetchRealData();
-        if (data) {
-          setAnalyticsData(data);
-        }
-      } else {
-        setAnalyticsData(generateMockData());
-        setLastUpdated(new Date());
-      }
-    };
-    loadData();
-  }, [timeRange, useRealData]);
+    setAnalyticsData(generateMockData());
+    setLastUpdated(new Date());
+  }, [timeRange]);
+
+  const handleRefresh = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setAnalyticsData(generateMockData());
+      setLastUpdated(new Date());
+      setLoading(false);
+    }, 500);
+  };
 
   const StatCard = ({ 
     icon: Icon, 
@@ -189,21 +143,13 @@ const AnalyticsDashboard = () => {
             <h1 className="text-3xl font-bold text-gray-900">Analytics Dashboard</h1>
             <div className="flex items-center gap-4 mt-1">
               <p className="text-gray-600">
-                {useRealData ? 'Live Data' : 'Demo Data'} • Last updated: {lastUpdated.toLocaleTimeString()}
+                Demo Data • Last updated: {lastUpdated.toLocaleTimeString()}
               </p>
-              {PROJECT_ID && (
-                <button
-                  onClick={() => setUseRealData(!useRealData)}
-                  className="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors"
-                >
-                  {useRealData ? 'Switch to Demo' : 'Use Real Data'}
-                </button>
-              )}
             </div>
           </div>
           <div className="flex gap-2">
             <button
-              onClick={() => setUseRealData(prev => prev ? fetchRealData().then(() => {}) : Promise.resolve())}
+              onClick={handleRefresh}
               disabled={loading}
               className="px-4 py-2 rounded-lg text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 flex items-center gap-2 disabled:opacity-50"
             >
@@ -227,9 +173,24 @@ const AnalyticsDashboard = () => {
           </div>
         </div>
 
-        {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-            {error}
+        {/* Info Banner */}
+        {!isPro && (
+          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm text-blue-900 font-medium">Demo Mode</p>
+              <p className="text-sm text-blue-700 mt-1">
+                This dashboard shows simulated data. Vercel Analytics API requires a Pro plan or higher. 
+                <a 
+                  href="https://vercel.com/pricing" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="underline ml-1 hover:text-blue-900"
+                >
+                  Upgrade to access real analytics
+                </a>
+              </p>
+            </div>
           </div>
         )}
 

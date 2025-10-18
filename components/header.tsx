@@ -82,13 +82,13 @@ export default function Header() {
                         <ul>
                           <h3 className="text-4xl">Useful widgets</h3>
                           <li className="pl-5">
-                            <Link href="/Widgets">Weather</Link>
+                            <Link href="/dashboard/widgets/weather">Weather</Link>
                           </li>
                           <li className="pl-5">
-                            <Link href="/Widgets">Notes</Link>
+                            <Link href="/dashboard/widgets/notes">Notes</Link>
                           </li>
                           <li className="pl-5">
-                            <Link href="/Widgets">To-Do</Link>
+                            <Link href="/dashboard/widgets/todo">To-Do</Link>
                           </li>
                           <h3 className="text-4xl">Services</h3>
                           <li className="pl-5">

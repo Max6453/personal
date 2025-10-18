@@ -13,7 +13,7 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Personal | Dashboard",
+  title: "Webhub | from developers to developers",
   description: "Dashboard for developers",
 };
 
