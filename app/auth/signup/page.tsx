@@ -31,7 +31,7 @@ export default function SignUp() {
 
       setEmail("");
       setPassword("");
-      router.push("/login?message=Check your email to confirm your account");
+      router.push("/auth/login?message=Check your email to confirm your account");
     } catch (err: any) {
       setError(err.message || "An error occurred during sign up");
     } finally {
@@ -84,7 +84,7 @@ export default function SignUp() {
 
         <p className="text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link href="/login" className="text-blue-600 hover:text-blue-500">
+          <Link href="/auth/login" className="text-blue-600 hover:text-blue-500">
             Sign in
           </Link>
         </p>

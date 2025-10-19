@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, Edit2, Save, X, Search, FileText, Loader2 } from 'lucide-react';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/lib/supabase'
 import Header from '@/components/sideHeader';
 
 // Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey);  
 
 interface Note {
   id: string;
@@ -16,6 +16,7 @@ interface Note {
   content: string;
   created_at: string;
   updated_at: string;
+  user_id: string; // Added user_id
 }
 
 export default function NotesApp() {
@@ -28,19 +29,64 @@ export default function NotesApp() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
+  // Get current user and load notes
   useEffect(() => {
-    loadNotes();
+    getCurrentUser();
   }, []);
 
-  const loadNotes = async () => {
+  // Listen for auth state changes
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+        setCurrentUserId(session?.user?.id || null);
+        loadNotes(session?.user?.id || null);
+      } else if (event === 'SIGNED_OUT') {
+        setCurrentUserId(null);
+        setNotes([]);
+        setSelectedNote(null);
+        setIsEditing(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const getCurrentUser = async () => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const userId = session?.user?.id || null;
+      setCurrentUserId(userId);
+      
+      if (userId) {
+        await loadNotes(userId);
+      } else {
+        setLoading(false);
+        setError('Not authenticated');
+      }
+    } catch (err: any) {
+      console.error('Error getting current user:', err);
+      setError('Failed to authenticate');
+      setLoading(false);
+    }
+  };
+
+  const loadNotes = async (userId: string | null) => {
+    if (!userId) {
+      setNotes([]);
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
-      console.log('Loading notes...');
+      console.log('Loading notes for user:', userId);
       
       const { data, error: fetchError } = await supabase
         .from('notes')
         .select('*')
+        .eq('user_id', userId) // CRITICAL FIX: Filter by user_id
         .order('updated_at', { ascending: false });
 
       if (fetchError) {
@@ -60,13 +106,19 @@ export default function NotesApp() {
   };
 
   const createNewNote = async () => {
+    if (!currentUserId) {
+      setError('Not authenticated');
+      return;
+    }
+
     try {
       setSaving(true);
-      console.log('Creating new note...');
+      console.log('Creating new note for user:', currentUserId);
       
       const newNote = {
         title: 'Untitled Note',
         content: '',
+        user_id: currentUserId, // CRITICAL FIX: Add user_id
       };
 
       const { data, error: insertError } = await supabase
@@ -96,7 +148,7 @@ export default function NotesApp() {
   };
 
   const saveNote = async () => {
-    if (!selectedNote) return;
+    if (!selectedNote || !currentUserId) return;
 
     try {
       setSaving(true);
@@ -109,6 +161,7 @@ export default function NotesApp() {
           content: editContent,
         })
         .eq('id', selectedNote.id)
+        .eq('user_id', currentUserId) // SECURITY: Ensure user owns the note
         .select()
         .single();
 
@@ -134,13 +187,16 @@ export default function NotesApp() {
   };
 
   const deleteNote = async (id: string) => {
+    if (!currentUserId) return;
+
     try {
       console.log('Deleting note:', id);
       
       const { error: deleteError } = await supabase
         .from('notes')
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .eq('user_id', currentUserId); // SECURITY: Ensure user owns the note
 
       if (deleteError) {
         console.error('Delete error:', deleteError);
@@ -222,7 +278,7 @@ export default function NotesApp() {
             <div className="flex gap-2">
               <button
                 onClick={createNewNote}
-                disabled={saving}
+                disabled={saving || !currentUserId}
                 className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition disabled:opacity-50"
                 title="Create new note"
               >
@@ -406,7 +462,7 @@ export default function NotesApp() {
               </p>
               <button
                 onClick={createNewNote}
-                disabled={saving}
+                disabled={saving || !currentUserId}
                 className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition flex items-center gap-2 mx-auto disabled:opacity-50"
               >
                 {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Plus className="w-5 h-5" />}
