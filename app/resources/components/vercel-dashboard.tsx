@@ -198,78 +198,7 @@ export default function VercelDashboard({ token }: VercelDashboardProps) {
       )}
 
       {/* Web Analytics Section */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100">
-        <div className="p-6 border-b border-gray-100">
-          <div className="flex items-center gap-2">
-            <Activity className="w-6 h-6 text-blue-600" />
-            <h3 className="text-xl font-bold text-gray-900">Web Analytics</h3>
-            <span className="text-sm text-gray-500 ml-2">(Last 30 Days)</span>
-          </div>
-        </div>
-
-        {analyticsLoading ? (
-          <div className="flex justify-center py-12">
-            <div className="animate-spin rounded-full h-8 w-8 border-4 border-blue-200 border-t-blue-600"></div>
-          </div>
-        ) : analytics ? (
-          <div className="p-6">
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-5 rounded-xl">
-                <p className="text-sm text-blue-600 font-semibold">Total Pageviews</p>
-                <p className="text-3xl font-bold text-blue-900 mt-2">
-                  {analytics.pageviews.toLocaleString()}
-                </p>
-              </div>
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-5 rounded-xl">
-                <p className="text-sm text-purple-600 font-semibold">Unique Visitors</p>
-                <p className="text-3xl font-bold text-purple-900 mt-2">
-                  {analytics.visitors.toLocaleString()}
-                </p>
-              </div>
-              <div className="bg-gradient-to-br from-green-50 to-green-100 p-5 rounded-xl">
-                <p className="text-sm text-green-600 font-semibold">Desktop Views</p>
-                <p className="text-3xl font-bold text-green-900 mt-2">
-                  {analytics.devices.desktop.toLocaleString()}
-                </p>
-              </div>
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-5 rounded-xl">
-                <p className="text-sm text-orange-600 font-semibold">Mobile Views</p>
-                <p className="text-3xl font-bold text-orange-900 mt-2">
-                  {analytics.devices.mobile.toLocaleString()}
-                </p>
-              </div>
-            </div>
-
-            {/* Top Pages */}
-            {analytics.topPages.length > 0 && (
-              <div>
-                <h4 className="text-lg font-bold text-gray-900 mb-4">Top Pages</h4>
-                <div className="space-y-2">
-                  {analytics.topPages.map((page, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-lg font-bold text-gray-400">#{idx + 1}</span>
-                        <span className="text-sm font-medium text-gray-700">{page.page}</span>
-                      </div>
-                      <span className="text-sm font-bold text-gray-900">
-                        {page.views.toLocaleString()} views
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="p-12 text-center text-gray-500">
-            No analytics data available
-          </div>
-        )}
-      </div>
+      
 
       {/* Deployments List */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100">

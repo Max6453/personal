@@ -47,37 +47,41 @@ export default function Header() {
                     </TransitionChild>
                     <div className="relative flex h-full flex-col overflow-y-auto bg-background text-foreground border-r-4 border-foreground py-6 shadow-xl after:absolute after:inset-y-0 after:left-0 after:w-px after:bg-white/10">
                       <div className="px-2 sm:px-6">
-                        <DialogTitle className="font-semibold text-2xl text-foreground">Webhub</DialogTitle>
+                        <DialogTitle className="font-semibold text-2xl flex gap-4 text-foreground">
+                          <img src="favicon.ico" className="size-12 hover:-rotate-10 duration-300 shadow-black"/>
+                          <span className="font-work-sans pt-2.5">WEBHUB</span>
+                        </DialogTitle>
                       </div>
                       <div className="relative mt-6 text-2xl flex flex-col flex-1 gap-y-15 px-4 sm:px-6">
                         <ul>
                           <h3 className="text-4xl">Useful widgets</h3>
-                          <li className="pl-5">
+                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/widgets/weather">Weather</Link>
                           </li>
-                          <li className="pl-5">
+                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/widgets/notes">Notes</Link>
                           </li>
-                          <li className="pl-5">
+                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/widgets/todo">To-Do</Link>
                           </li>
                           <h3 className="text-4xl">Services</h3>
-                          <li className="pl-5">
+                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/resources/vercel">Vercel</Link>
                           </li>
-                          <li className="pl-5">
+                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/resources/supabase">Supabase</Link>
                           </li>
-                          <li className="pl-5">
+                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/resources/github">Github</Link>
                           </li>
-                          <li>
+                          <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/account">Settings</Link>
                           </li>
-                          <li>
+                          <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard">Return back</Link>
                           </li>
                         </ul>
+                        <span className="text-sm absolute -bottom-5 pl-25">Version:1.2.6</span>
                       </div>
                     </div>
                   </DialogPanel>
