@@ -54,16 +54,6 @@ export default function Header() {
                       </div>
                       <div className="relative mt-6 text-2xl flex flex-col flex-1 gap-y-15 px-4 sm:px-6">
                         <ul>
-                          <h3 className="text-4xl">Useful widgets</h3>
-                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard/widgets/weather">Weather</Link>
-                          </li>
-                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard/widgets/notes">Notes</Link>
-                          </li>
-                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard/widgets/todo">To-Do</Link>
-                          </li>
                           <h3 className="text-4xl">Services</h3>
                           <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/resources/vercel">Vercel</Link>
@@ -74,12 +64,28 @@ export default function Header() {
                           <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/resources/github">Github</Link>
                           </li>
+                          <h3 className="text-4xl">Widgets</h3>
+                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
+                            <Link href="/dashboard/widgets/weather">Weather</Link>
+                          </li>
+                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
+                            <Link href="/dashboard/widgets/project-tracker">Project Tracker</Link>
+                          </li>
+                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
+                            <Link href="/dashboard/widgets/todo">To-Do</Link>
+                          </li>
+                          <h3 className="text-4xl">Personal</h3>
+                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
+                            <Link href="/dashboard/widgets/journal">Journal</Link>
+                          </li>
+                          <div className="relative pt-10">
                           <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/account">Settings</Link>
                           </li>
                           <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard">Return back</Link>
                           </li>
+                          </div>
                         </ul>
                         <span className="text-sm absolute -bottom-5 pl-25">Version:1.2.6</span>
                       </div>
