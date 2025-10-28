@@ -40,7 +40,7 @@ export default function GithubDashboard({ token }: GithubDashboardProps) {
 
   if (!token) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm p-12 text-center border border-gray-100">
+      <div className="rounded-2xl shadow-sm p-12 text-center border border-gray-100">
         <Github className="w-16 h-16 text-gray-300 mx-auto mb-4" />
         <p className="text-gray-500 text-lg font-medium">No GitHub Token Connected</p>
         <p className="text-gray-400 text-sm mt-2">Connect your GitHub account in Settings to view profile data</p>
@@ -62,7 +62,7 @@ export default function GithubDashboard({ token }: GithubDashboardProps) {
       )}
 
       {stats && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard icon={Github} title="Repositories" value={stats.public_repos || 0} />
           <StatCard icon={Users} title="Followers" value={stats.followers || 0} />
           <StatCard icon={TrendingUp} title="Following" value={stats.following || 0} />
@@ -71,24 +71,24 @@ export default function GithubDashboard({ token }: GithubDashboardProps) {
       )}
 
       {stats && (
-        <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">Profile Info</h3>
+        <div className="rounded-2xl shadow-sm p-8 border border-gray-100">
+          <h3 className="text-xl font-bold text-foreground mb-4">Profile Info</h3>
           <div className="space-y-3">
             <div className="flex justify-between">
-              <span className="text-gray-600">Name:</span>
-              <span className="font-semibold text-gray-900">{stats.name || 'N/A'}</span>
+              <span className="text-blue-800">Name:</span>
+              <span className="font-semibold text-foreground">{stats.name || 'N/A'}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Username:</span>
-              <span className="font-semibold text-gray-900">{stats.login}</span>
+              <span className="text-blue-800">Username:</span>
+              <span className="font-semibold text-foreground">{stats.login}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Company:</span>
-              <span className="font-semibold text-gray-900">{stats.company || 'N/A'}</span>
+              <span className="text-blue-800">Company:</span>
+              <span className="font-semibold text-foreground">{stats.company || 'N/A'}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Location:</span>
-              <span className="font-semibold text-gray-900">{stats.location || 'N/A'}</span>
+              <span className="text-blue-800">Location:</span>
+              <span className="font-semibold text-foreground">{stats.location || 'N/A'}</span>
             </div>
           </div>
         </div>

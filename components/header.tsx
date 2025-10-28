@@ -39,7 +39,7 @@ export default function Header() {
     <div>
         <header className="bg-foreground top-0 relative">
         <div className="text-start text-background p-5">
-          <h1 className="text-6xl">Webhub</h1>
+          <h1 className="text-6xl font-work-sans">Webhub</h1>
           <h3 className="text-4xl">Modern dashboard for developers</h3>
         </div>
         <button
@@ -105,7 +105,7 @@ export default function Header() {
                           </li>
                         </ul>
                       </div>
-                      <div className="text-center bottom-5 w-80 left-5 absolute backdrop-blur-md rounded-3xl shadow-background border-foreground border">
+                      <div className="text-center w-20 left-5 absolute backdrop-blur-md rounded-3xl shadow-background border-foreground border">
                          <div className="mb-4">
                           <h1 className="text-2xl font-mono font-bold text-foreground tracking-wider">
                             {formatTime(currentTime)}

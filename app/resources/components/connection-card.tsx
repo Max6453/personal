@@ -34,7 +34,7 @@ export default function ConnectionCard({ connection, onConnect, onDisconnect }: 
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-lg transition-all">
+    <div className="rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-lg transition-all">
       <div className="flex items-start justify-between mb-4">
         <div className={`p-3 bg-gradient-to-br ${colors[connection.platform]} rounded-xl`}>
           <Icon className="w-6 h-6 text-white" />
@@ -46,7 +46,7 @@ export default function ConnectionCard({ connection, onConnect, onDisconnect }: 
           </div>
         )}
       </div>
-      <h3 className="font-bold text-gray-900 mb-1 capitalize">{connection.platform}</h3>
+      <h3 className="font-bold text-blue-900 mb-1 capitalize">{connection.platform}</h3>
       <p className="text-sm text-gray-500 mb-4">{connection.name}</p>
       <p className="text-xs text-gray-400 mb-3">{descriptions[connection.platform]}</p>
       

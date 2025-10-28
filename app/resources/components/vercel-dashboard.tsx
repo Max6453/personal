@@ -175,7 +175,7 @@ export default function VercelDashboard({ token }: VercelDashboardProps) {
 
   if (!token) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm p-12 text-center border border-gray-100">
+      <div className="bg-background rounded-2xl shadow-sm p-12 text-center border border-gray-100">
         <Globe className="w-16 h-16 text-gray-300 mx-auto mb-4" />
         <p className="text-gray-500 text-lg font-medium">No Vercel Token Connected</p>
         <p className="text-gray-400 text-sm mt-2">Connect your Vercel account to view deployments and analytics</p>
@@ -201,9 +201,9 @@ export default function VercelDashboard({ token }: VercelDashboardProps) {
       
 
       {/* Deployments List */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div className="bg-background rounded-xl shadow-sm border border-gray-100">
         <div className="p-6 border-b border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900">Recent Deployments</h3>
+          <h3 className="text-xl font-bold text-blue-700">Recent Deployments</h3>
           <p className="text-sm text-gray-500 mt-1">Last 20 deployments</p>
         </div>
 
@@ -225,7 +225,7 @@ export default function VercelDashboard({ token }: VercelDashboardProps) {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-2">
-                        <h4 className="font-bold text-gray-900 truncate">
+                        <h4 className="font-bold text-blue-900 truncate">
                           {deployment.name}
                         </h4>
                         <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStateColor(deployment.state)}`}>

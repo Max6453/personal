@@ -98,10 +98,10 @@ export default function SettingsPage({
 
   return (
     <div className="space-y-8">
-      <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-100">
+      <div className="bg-background rounded-2xl shadow-sm p-8 border border-gray-100">
         <div className="flex items-start justify-between mb-6">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">Account Settings</h2>
+            <h2 className="text-3xl font-bold text-blue-700">Account Settings</h2>
             <p className="text-gray-600 mt-1">Manage your account and connected services</p>
           </div>
           <Link href="/dashboard">
@@ -151,7 +151,7 @@ export default function SettingsPage({
 
         {activeTab === 'account' && (
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-gray-900">Profile Information</h3>
+            <h3 className="text-xl font-bold text-foreground">Profile Information</h3>
             <form onSubmit={updateEmail} className="space-y-4">
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -179,7 +179,7 @@ export default function SettingsPage({
 
         {activeTab === 'security' && (
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-gray-900">Change Password</h3>
+            <h3 className="text-xl font-bold text-foreground">Change Password</h3>
             <form onSubmit={updatePassword} className="space-y-4">
               <div>
                 <label htmlFor="new-password" className="block text-sm font-medium text-gray-700 mb-1">
@@ -220,8 +220,8 @@ export default function SettingsPage({
 
         {activeTab === 'integrations' && (
           <div className="space-y-6">
-            <div className="flex flex-col space-y-2 mb-8 bg-gray-50 rounded-lg p-4 text-sm">
-              <h4 className="font-medium text-gray-900">Where to find your tokens:</h4>
+            <div className="flex flex-col space-y-2 mb-8 border border-white rounded-lg p-4 text-sm">
+              <h4 className="font-medium text-foreground">Where to find your tokens:</h4>
               <a href="https://vercel.com/account/tokens" target="_blank" rel="noopener noreferrer" 
                 className="flex items-center text-blue-600 hover:text-blue-700">
                 Vercel <ExternalLink className="w-3 h-3 ml-1" />
@@ -233,7 +233,7 @@ export default function SettingsPage({
               <span>Supabase: Project settings - API keys</span>
             </div>
 
-            <h3 className="text-xl font-bold text-gray-900">Connected Services</h3>
+            <h3 className="text-xl font-bold text-blue-500">Connected Services</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {connections && connections.length > 0 ? (
                 connections.map((connection: Connection) => (

@@ -181,7 +181,7 @@ export default function GithubPage() {
       <Header/>
       <div className="p-6">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">GitHub Dashboard</h1>
+          <h1 className="text-2xl font-bold">GitHub Dashboard</h1>
           <button
             onClick={handleDisconnect}
             className="px-4 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors text-sm font-medium"
@@ -197,7 +197,7 @@ export default function GithubPage() {
             className={`px-4 py-2 font-medium text-sm transition-colors ${
               activeTab === 'dashboard'
                 ? 'text-blue-600 border-b-2 border-blue-600'
-                : 'text-gray-600 hover:text-gray-900'
+                : 'text-gray-600 hover:text-foreground'
             }`}
           >
             Dashboard
@@ -207,7 +207,7 @@ export default function GithubPage() {
             className={`px-4 py-2 font-medium text-sm transition-colors ${
               activeTab === 'issues'
                 ? 'text-blue-600 border-b-2 border-blue-600'
-                : 'text-gray-600 hover:text-gray-900'
+                : 'text-gray-600 hover:text-foreground'
             }`}
           >
             Issues ({issues.length})
@@ -217,7 +217,7 @@ export default function GithubPage() {
             className={`px-4 py-2 font-medium text-sm transition-colors ${
               activeTab === 'prs'
                 ? 'text-blue-600 border-b-2 border-blue-600'
-                : 'text-gray-600 hover:text-gray-900'
+                : 'text-gray-600 hover:text-foreground'
             }`}
           >
             Pull Requests ({pullRequests.length})
@@ -241,7 +241,7 @@ export default function GithubPage() {
                   issues.map((issue) => (
                     <div
                       key={issue.id}
-                      className="bg-white rounded-lg shadow-sm p-4 border border-gray-100 hover:shadow-md transition-shadow"
+                      className="text-foreground rounded-lg shadow-sm p-4 border border-gray-100 hover:shadow-md transition-shadow"
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
@@ -255,7 +255,7 @@ export default function GithubPage() {
                             >
                               {issue.state}
                             </span>
-                            <span className="text-xs text-gray-500">
+                            <span className="text-xs text-foreground">
                               {getRepoName(issue.repository_url)}
                             </span>
                           </div>
@@ -263,7 +263,7 @@ export default function GithubPage() {
                             href={issue.html_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-900 font-medium hover:text-blue-600"
+                            className="text-blue-700 font-medium hover:text-blue-600"
                           >
                             {issue.title}
                           </a>
@@ -289,7 +289,7 @@ export default function GithubPage() {
                   pullRequests.map((pr) => (
                     <div
                       key={pr.id}
-                      className="bg-white rounded-lg shadow-sm p-4 border border-gray-100 hover:shadow-md transition-shadow"
+                      className="rounded-lg shadow-sm p-4 border border-gray-100 hover:shadow-md transition-shadow"
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
@@ -310,11 +310,11 @@ export default function GithubPage() {
                             href={pr.html_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-900 font-medium hover:text-blue-600"
+                            className="text-blue-700 font-medium hover:text-blue-600"
                           >
                             {pr.title}
                           </a>
-                          <div className="text-xs text-gray-500 mt-2">
+                          <div className="text-xs text-foreground mt-2">
                             Created {formatDate(pr.created_at)} by {pr.user.login}
                           </div>
                         </div>

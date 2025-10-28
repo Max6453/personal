@@ -1,15 +1,46 @@
 'use client'
 import Link from "next/link";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle, TransitionChild } from '@headlessui/react'
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler"
 
 export default function Header() {
     const [open, setOpen] = useState(false)
+        const [currentTime, setCurrentTime] = useState<Date>(new Date());
+        
+          useEffect(() => {
+            const timer = setInterval(() => {
+              setCurrentTime(new Date());
+            }, 1000);
+        
+            return () => clearInterval(timer);
+          }, []);
+    
+        const formatTime = (date: Date): string => {
+        return date.toLocaleTimeString('sk-SK', {
+          timeZone: 'Europe/Bratislava',
+          hour12: false,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        });
+      };
+    
+      const formatDate = (date: Date): string => {
+        return date.toLocaleDateString('sk-SK', {
+          timeZone: 'Europe/Bratislava',
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+      };
+
     return(
     <div>
         <header className="bg-foreground top-0 relative">
-        <div className="text-start text-background p-5">
+        <div className="text-start text-background p-5 hover:shadow-2xl duration-300">
           <h1 className="text-6xl">Webhub</h1>
           <h3 className="text-4xl">Modern dashboard for developers</h3>
         </div>
@@ -87,6 +118,19 @@ export default function Header() {
                           </li>
                           </div>
                         </ul>
+                        <div className="text-center w-80 bottom-10 left-5 absolute backdrop-blur-md rounded-3xl shadow-background border-foreground border">
+                         <div className="mb-4">
+                          <h1 className="text-2xl font-mono font-bold text-foreground tracking-wider">
+                            {formatTime(currentTime)}
+                          </h1>
+                          <p className="text-xl text-foreground font-light">
+                            {formatDate(currentTime)}
+                          </p>
+                          </div>
+                        </div>
+                        <div className="pl-35 top-20 relative ">
+                          <AnimatedThemeToggler className="hover:text-black duration-300 cursor-pointer" />
+                        </div>
                         <span className="text-sm absolute -bottom-5 pl-25">Version:1.2.6</span>
                       </div>
                     </div>

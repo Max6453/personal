@@ -45,25 +45,25 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background text-foreground">
       <main className="max-w-xl">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+        <div className="bg-background rounded-lg border border-foreground shadow p-6">
+          <h2 className="text-xl font-semibold mb-4">
             Welcome back, {user?.email}
           </h2>
-          <p className="text-gray-600 mb-4">
+          <p className="mb-4">
             Last sign in: {user?.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleString() : 'N/A'}
           </p>
           <div className="flex gap-5 left-15 relative">
           <button
             onClick={handleLogout}
-            className="px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700"
+            className="px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm text-white font-medium bg-red-600 hover:bg-red-700"
           >
             Logout
           </button>
           <Link href="/dashboard/account">
           <button
-          className="px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-foreground hover:bg-blue-700">
+          className="px-4 py-2 border border-foreground rounded-lg shadow-sm text-sm font-medium text-white bg-foreground hover:bg-blue-700">
             Settings
           </button>
           </Link>
