@@ -7,15 +7,53 @@ import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler"
 
 export default function Header() {
     const [open, setOpen] = useState(false)
-        const [currentTime, setCurrentTime] = useState<Date>(new Date());
-        
-          useEffect(() => {
-            const timer = setInterval(() => {
-              setCurrentTime(new Date());
-            }, 1000);
-        
-            return () => clearInterval(timer);
+    const [currentTime, setCurrentTime] = useState<Date>(new Date());
+    const [isFixed, setIsFixed] = useState(false);
+    const [theme, setTheme] = useState<string | null>(null);
+    const [mounted, setMounted] = useState(false);
+
+            useEffect(() => {
+                    const handleScroll = () => {
+                      const scrollPosition = window.scrollY || window.pageYOffset;
+                      console.log('Scroll position:', scrollPosition); // Debug log
+                      
+                      if (scrollPosition > 10) {
+                        setIsFixed(true);
+                      } else {
+                        setIsFixed(false);
+                      }
+                    };
+
+                    // Check initial scroll position
+                    handleScroll();
+
+                    window.addEventListener('scroll', handleScroll, { passive: true });
+
+                    return () => {
+                      window.removeEventListener('scroll', handleScroll);
+                    };
+                  }, []);
+
+            useEffect(() => {
+            setMounted(true);
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+            document.documentElement.classList.toggle('dark', savedTheme === 'dark');
           }, []);
+
+          const toggleTheme = () => {
+            if (!theme) return;
+            
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+            document.documentElement.classList.toggle('dark', newTheme === 'dark');
+          };
+
+          // Prevent flash of wrong theme
+          if (!mounted) {
+            return null; // or return a loading skeleton
+          }
     
         const formatTime = (date: Date): string => {
         return date.toLocaleTimeString('sk-SK', {
@@ -39,20 +77,24 @@ export default function Header() {
 
     return(
     <div>
-        <header className="bg-foreground top-0 relative">
-        <div className="text-start text-background p-5 hover:shadow-2xl duration-300">
-          <h1 className="text-6xl">Webhub</h1>
-          <h3 className="text-4xl">Modern dashboard for developers</h3>
-        </div>
-        <button
+        <header className={`bg-foreground top-0 ${isFixed ? 'fixed left-0 right-0' : 'relative'} w-full z-50 transition-all duration-300`}>
+          <div className="text-start text-background p-5 font-work-sans transition-all duration-300">
+            <h1 className={`transition-all duration-300 ${isFixed ? 'text-center text-6xl' : 'text-6xl'}`}>
+              Webhub
+            </h1>
+            <h3 className={`text-4xl transition-all duration-300 ${isFixed ? 'opacity-0 max-h-0 overflow-hidden' : 'opacity-100 max-h-20'}`}>
+              Modern dashboard for developers
+            </h3>
+          </div>
+          <button
             onClick={() => setOpen(true)}
-            className="absolute top-20 right-20 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-white/20"
+            className={`absolute rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-white/20 transition-all duration-300 ${isFixed ? 'top-10 right-20' : 'top-20 right-20'}`}
           >
             <Bars2Icon className="size-8"/>
           </button>
-      </header>
+        </header>
       <div>
-      <Dialog open={open} onClose={setOpen} className="relative z-10">
+      <Dialog open={open} onClose={setOpen} className="relative z-50 font-roboto">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-gray-900/50 transition-opacity duration-500 ease-in-out data-closed:opacity-0"
@@ -109,7 +151,7 @@ export default function Header() {
                           <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/widgets/journal">Journal</Link>
                           </li>
-                          <div className="relative pt-10">
+                          <div className="relative pt-2">
                           <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/account">Settings</Link>
                           </li>
@@ -128,10 +170,10 @@ export default function Header() {
                           </p>
                           </div>
                         </div>
-                        <div className="pl-35 top-20 relative ">
+                        <div className="pl-35 top-30 relative ">
                           <AnimatedThemeToggler className="hover:text-black duration-300 cursor-pointer" />
                         </div>
-                        <span className="text-sm absolute -bottom-5 pl-25">Version:1.2.6</span>
+                        <span className="text-sm absolute -bottom-5 pl-28">Version:1.2.6</span>
                       </div>
                     </div>
                   </DialogPanel>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/sideHeader";
 import "../globals.css";
+
 export const metadata: Metadata = {
   title: "Webhub | Dashboard",
   description: "Dashboard for developers",

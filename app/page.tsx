@@ -119,7 +119,7 @@ export default function Example() {
           </div>
         </div>
       </div>
-      <div className=' h-screen pt-30 snap-start'>
+      <div className='bg-neutral-800 h-screen pt-30 snap-start'>
         <div className='relative flex flex-col gap-5 p-5 text-lg text-gray-300 text-center top-18'>
         <p>
         Stop switching between countless tabs and dashboards. WebHub brings all your favorite developer tools together — GitHub, Vercel, Supabase, and more — into one unified, minimal workspace.
