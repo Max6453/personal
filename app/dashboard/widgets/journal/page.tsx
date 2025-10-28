@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, Edit2, Save, X, Search, FileText, Loader2 } from 'lucide-react';
-import { createClient } from '@/lib/supabase'
+import { createClient } from '@supabase/supabase-js';
 import Header from '@/components/sideHeader';
 
 // Initialize Supabase client

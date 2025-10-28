@@ -1,6 +1,5 @@
 'use client'
 import Link from "next/link";
-import Header from "@/components/header";
 import VercelAnalyticsDashboard from "@/components/dashboard";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase";
