@@ -12,8 +12,6 @@ export default function Header() {
     const [isFixed, setIsFixed] = useState(false);
     const [theme, setTheme] = useState<string | null>(null);
     const [mounted, setMounted] = useState(false);
-    const location = useLocation(); // useRoute() in Nuxt
-    const disabledRoutes = ['/login', '/settings'];
 
     useEffect(() => {
       const handleScroll = () => {
@@ -26,7 +24,6 @@ export default function Header() {
           setIsFixed(false);
         }
       };
-
       // Check initial scroll position
       handleScroll();
 
@@ -124,7 +121,9 @@ return date.toLocaleDateString('sk-SK', {
                     <div className="relative flex h-full flex-col overflow-y-auto bg-background text-foreground border-r-4 border-foreground py-6 shadow-xl after:absolute after:inset-y-0 after:left-0 after:w-px after:bg-white/10">
                       <div className="px-2 sm:px-6">
                         <DialogTitle className="font-semibold text-2xl flex gap-4 text-foreground">
+                          <Link href="/">
                           <img src="favicon.ico" className="size-12 hover:-rotate-10 duration-300 shadow-black"/>
+                          </Link>
                           <span className="font-work-sans pt-2.5">WEBHUB</span>
                         </DialogTitle>
                       </div>
@@ -153,15 +152,18 @@ return date.toLocaleDateString('sk-SK', {
                           <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/widgets/notes">Notes</Link>
                           </li>
-                          <div className="relative pt-2">
+                          <div className="relative pt-2 flex flex-col gap-1">
                           <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/account">Settings</Link>
+                          </li>
+                          <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
+                            <Link href="/support">Support</Link>
                           </li>
                           <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard">Return back</Link>
                           </li>
                           <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/support">Support</Link>
+                            <Link href="/blog" target="_blank">Blog</Link>
                           </li>
                           </div>
                         </ul>
@@ -175,7 +177,7 @@ return date.toLocaleDateString('sk-SK', {
                           </p>
                           </div>
                         </div>
-                        <div className="pl-35 top-30 relative ">
+                        <div className="pl-35 top-20 relative ">
                           <AnimatedThemeToggler className="hover:text-black duration-300 cursor-pointer" />
                         </div>
                         <span className="text-sm absolute -bottom-5 pl-28">Version:1.2.6</span>
