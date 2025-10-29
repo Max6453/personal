@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Header from "@/components/sideHeader";
-import "../globals.css";
 
 export const metadata: Metadata = {
   title: "Webhub | Dashboard",
@@ -14,8 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-      >
+      <body>
         <Header/>
         {children}
       </body>

@@ -97,7 +97,7 @@ export default function NotesApp() {
       console.log('Loaded notes:', data?.length || 0);
       setNotes(data || []);
       setError(null);
-    } catch (err: any) {
+    } catch (err: any) {  
       console.error('Error loading notes:', err);
       setError(`Failed to load notes: ${err.message || 'Unknown error'}`);
     } finally {
@@ -141,7 +141,7 @@ export default function NotesApp() {
       setError(null);
     } catch (err: any) {
       console.error('Error creating note:', err);
-      setError(`Failed to create note: ${err.message || 'Unknown error'}`);
+      setError(`Failed to create note: ${err.message || 'Unknown error'}, please contact support for additional assistance`);
     } finally {
       setSaving(false);
     }

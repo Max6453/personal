@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle, TransitionChild } from '@headlessui/react'
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler"
+import { useLocation } from 'react-router-dom';
 
 export default function Header() {
     const [open, setOpen] = useState(false)
@@ -11,69 +12,71 @@ export default function Header() {
     const [isFixed, setIsFixed] = useState(false);
     const [theme, setTheme] = useState<string | null>(null);
     const [mounted, setMounted] = useState(false);
+    const location = useLocation(); // useRoute() in Nuxt
+    const disabledRoutes = ['/login', '/settings'];
 
-            useEffect(() => {
-                    const handleScroll = () => {
-                      const scrollPosition = window.scrollY || window.pageYOffset;
-                      console.log('Scroll position:', scrollPosition); // Debug log
-                      
-                      if (scrollPosition > 10) {
-                        setIsFixed(true);
-                      } else {
-                        setIsFixed(false);
-                      }
-                    };
-
-                    // Check initial scroll position
-                    handleScroll();
-
-                    window.addEventListener('scroll', handleScroll, { passive: true });
-
-                    return () => {
-                      window.removeEventListener('scroll', handleScroll);
-                    };
-                  }, []);
-
-            useEffect(() => {
-            setMounted(true);
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            setTheme(savedTheme);
-            document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-          }, []);
-
-          const toggleTheme = () => {
-            if (!theme) return;
-            
-            const newTheme = theme === 'light' ? 'dark' : 'light';
-            setTheme(newTheme);
-            localStorage.setItem('theme', newTheme);
-            document.documentElement.classList.toggle('dark', newTheme === 'dark');
-          };
-
-          // Prevent flash of wrong theme
-          if (!mounted) {
-            return null; // or return a loading skeleton
-          }
-    
-        const formatTime = (date: Date): string => {
-        return date.toLocaleTimeString('sk-SK', {
-          timeZone: 'Europe/Bratislava',
-          hour12: false,
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-        });
+    useEffect(() => {
+      const handleScroll = () => {
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        console.log('Scroll position:', scrollPosition); // Debug log
+        
+        if (scrollPosition > 100) {
+          setIsFixed(true);
+        } else {
+          setIsFixed(false);
+        }
       };
-    
-      const formatDate = (date: Date): string => {
-        return date.toLocaleDateString('sk-SK', {
-          timeZone: 'Europe/Bratislava',
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        });
+
+      // Check initial scroll position
+      handleScroll();
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
       };
+    }, []);
+
+    useEffect(() => {
+    setMounted(true);
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+  }, []);
+
+  const toggleTheme = () => {
+    if (!theme) return;
+    
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+  };
+
+  // Prevent flash of wrong theme
+  if (!mounted) {
+    return null; // or return a loading skeleton
+  }
+
+const formatTime = (date: Date): string => {
+return date.toLocaleTimeString('sk-SK', {
+  timeZone: 'Europe/Bratislava',
+  hour12: false,
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+});
+};
+
+const formatDate = (date: Date): string => {
+return date.toLocaleDateString('sk-SK', {
+  timeZone: 'Europe/Bratislava',
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+};
 
     return(
     <div>
@@ -147,9 +150,8 @@ export default function Header() {
                           <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/widgets/todo">To-Do</Link>
                           </li>
-                          <h3 className="text-4xl">Personal</h3>
                           <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard/widgets/journal">Journal</Link>
+                            <Link href="/dashboard/widgets/notes">Notes</Link>
                           </li>
                           <div className="relative pt-2">
                           <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
@@ -157,6 +159,9 @@ export default function Header() {
                           </li>
                           <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard">Return back</Link>
+                          </li>
+                          <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
+                            <Link href="/support">Support</Link>
                           </li>
                           </div>
                         </ul>

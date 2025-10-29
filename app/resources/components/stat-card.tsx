@@ -13,7 +13,7 @@ interface StatCardProps {
 
 export function StatCard({ icon: Icon, title, value, change, trend }: StatCardProps) {
   return (
-    <div className="bg-background rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-lg transition-all duration-300">
+    <div className="bg-background hover:bg-blue-50 hover:scale-105 rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-lg transition-all duration-300">
       <div className="flex items-start justify-between mb-4">
         <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl">
           <Icon className="w-6 h-6 text-white" />
