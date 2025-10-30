@@ -176,3 +176,5 @@ export default function blog() {
         </div>
     )
 }
+
+export const dynamic = 'force-dynamic';

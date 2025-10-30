@@ -7,3 +7,5 @@ export default function docs() {
         </div>
     )
 }
+
+export const dynamic = 'force-dynamic';
