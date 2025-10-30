@@ -8,3 +8,5 @@ export default function weatherApp() {
         </div>
     )
 }
+
+export const dynamic = 'force-dynamic';

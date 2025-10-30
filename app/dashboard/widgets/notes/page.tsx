@@ -476,3 +476,5 @@ export default function NotesApp() {
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic';

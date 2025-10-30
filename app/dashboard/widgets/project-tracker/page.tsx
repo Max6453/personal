@@ -395,3 +395,5 @@ export default function ProjectTracker() {
     </div>
   )
 }
+
+export const dynamic = 'force-dynamic';
