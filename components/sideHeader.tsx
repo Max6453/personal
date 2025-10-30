@@ -160,7 +160,7 @@ return date.toLocaleDateString('sk-SK', {
                             <Link href="/support">Support</Link>
                           </li>
                           <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard">Return back</Link>
+                            <Link href="/docs">Docs</Link>
                           </li>
                           <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/blog" target="_blank">Blog</Link>
