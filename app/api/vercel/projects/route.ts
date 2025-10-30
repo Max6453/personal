@@ -6,7 +6,7 @@ export async function GET() {
   if (!vercelToken) {
     return NextResponse.json(
       { 
-        error: 'Vercel API token not configured',
+        error: 'Vercel API token not configured :(',
         message: 'Please add VERCEL_API_TOKEN to your .env.local file'
       },
       { status: 500 }
