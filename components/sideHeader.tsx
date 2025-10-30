@@ -121,7 +121,7 @@ return date.toLocaleDateString('sk-SK', {
                     <div className="relative flex h-full flex-col overflow-y-auto bg-background text-foreground border-r-4 border-foreground py-6 shadow-xl after:absolute after:inset-y-0 after:left-0 after:w-px after:bg-white/10">
                       <div className="px-2 sm:px-6">
                         <DialogTitle className="font-semibold text-2xl flex gap-4 text-foreground">
-                          <Link href="/">
+                          <Link href="/dashboard">
                           <img src="favicon.ico" className="size-12 hover:-rotate-10 duration-300 shadow-black"/>
                           </Link>
                           <span className="font-work-sans pt-2.5">WEBHUB</span>
@@ -140,9 +140,6 @@ return date.toLocaleDateString('sk-SK', {
                             <Link href="/resources/github">Github</Link>
                           </li>
                           <h3 className="text-4xl">Widgets</h3>
-                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard/widgets/weather">Weather</Link>
-                          </li>
                           <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
                             <Link href="/dashboard/widgets/project-tracker">Project Tracker</Link>
                           </li>
@@ -177,7 +174,7 @@ return date.toLocaleDateString('sk-SK', {
                           </p>
                           </div>
                         </div>
-                        <div className="pl-35 top-20 relative ">
+                        <div className="pl-35 top-28 relative ">
                           <AnimatedThemeToggler className="hover:text-black duration-300 cursor-pointer" />
                         </div>
                         <span className="text-sm absolute -bottom-5 pl-28">Version:1.2.6</span>
