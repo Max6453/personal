@@ -1,7 +1,5 @@
 import { createClient } from './supabase';
 
-const supabase = createClient();
-
 export type Platform = 'vercel' | 'supabase' | 'github';
 
 export interface PlatformToken {
@@ -11,7 +9,12 @@ export interface PlatformToken {
 }
 
 export async function savePlatformToken(platform: Platform, token: string) {
+  if (typeof window === 'undefined') {
+    return null; // Return null during SSR/build
+  }
   try {
+    const supabase = createClient(); // ✅ Move it here
+    
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) throw new Error('User not authenticated');
 
@@ -44,6 +47,8 @@ export async function savePlatformToken(platform: Platform, token: string) {
 
 export async function getPlatformToken(platform: Platform): Promise<string | null> {
   try {
+    const supabase = createClient(); // ✅ Move it here
+    
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return null;
 
@@ -64,6 +69,8 @@ export async function getPlatformToken(platform: Platform): Promise<string | nul
 
 export async function deletePlatformToken(platform: Platform) {
   try {
+    const supabase = createClient(); // ✅ Move it here
+    
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) throw new Error('User not authenticated');
 
@@ -94,6 +101,8 @@ export async function deletePlatformToken(platform: Platform) {
 
 export async function getAllPlatformTokens(): Promise<PlatformToken[]> {
   try {
+    const supabase = createClient(); // ✅ Move it here
+    
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return [];
 
