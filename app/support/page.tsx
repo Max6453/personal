@@ -233,3 +233,5 @@ export default function SupportTicketSystem() {
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic';
