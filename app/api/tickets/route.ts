@@ -1,12 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MongoClient } from 'mongodb';
+import * as dotenv from 'dotenv';
 
-if (!process.env.MONGODB_URI) {
+// Load environment variables from both .env and .env.local
+dotenv.config({ path: '.env' });
+dotenv.config({ path: '.env.local' });
+
+// Load and validate environment variables
+const MONGODB_URI = process.env.MONGODB_URI;
+console.log('MongoDB URI defined:', !!MONGODB_URI); // Log if URI is defined (without exposing the actual URI)
+
+if (!MONGODB_URI) {
+  console.error('MongoDB URI is not defined in environment variables');
   throw new Error('Please define the MONGODB_URI environment variable');
 }
 
-const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri);
+const client = new MongoClient(MONGODB_URI);
 
 // Connect to MongoDB
 async function connectToMongoDB() {
