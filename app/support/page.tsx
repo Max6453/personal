@@ -3,13 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import { AlertCircle, CheckCircle, Send, Trash2 } from 'lucide-react';
 import Header from '@/components/sideHeader';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createBrowserClient } from '@supabase/ssr';
 import type { Database } from '@/types/supabase';
 
 type Ticket = Database['public']['Tables']['tickets']['Row'];
 
 export default function SupportTicketSystem() {
-  const supabase = createClientComponentClient<Database>();
+  const supabase = createBrowserClient<Database>(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [formData, setFormData] = useState({
     email: '',
@@ -59,10 +62,9 @@ export default function SupportTicketSystem() {
     };
 
     try {
-      // Insert the ticket into Supabase
       const { data: ticket, error } = await supabase
         .from('tickets')
-        .insert(newTicket)
+        .insert(newTicket as any) // or use 'as never'
         .select()
         .single();
 
