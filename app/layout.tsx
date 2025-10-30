@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto, Work_Sans} from "next/font/google";
+import { Roboto, Work_Sans, Quantico } from "next/font/google";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -9,6 +9,12 @@ const roboto = Roboto({
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
+  subsets: ["latin"],
+});
+
+const quantico = Quantico({
+  variable: "--font-quantico",
+  weight: "400",
   subsets: ["latin"],
 });
 
@@ -25,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-      className={`${roboto.variable} ${workSans.variable} antialiased`}
+      className={`${roboto.variable} ${workSans.variable} ${quantico.variable}  antialiased`}
       >
         {children}
       </body>
