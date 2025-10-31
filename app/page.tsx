@@ -66,7 +66,7 @@ export default function Example() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/dashboard" target='_blank' className="text-sm/6 font-semibold text-white hover:text-foreground duration-300">
+            <a href="/auth/login" target='_blank' className="text-sm/6 font-semibold text-white hover:text-foreground duration-300">
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
