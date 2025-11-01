@@ -2,12 +2,15 @@
 import Link from "next/link";
 import { useState, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle, TransitionChild } from '@headlessui/react'
-import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars2Icon, XMarkIcon, ArrowDownIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler"
-import { useLocation } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
+
 
 export default function Header() {
     const [open, setOpen] = useState(false)
+    const [openAnalytics, setOpenAnalytics] = useState(false);
+    const [openStorage, setOpenStorage] = useState(false);
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isFixed, setIsFixed] = useState(false);
     const [theme, setTheme] = useState<string | null>(null);
@@ -54,26 +57,6 @@ export default function Header() {
   if (!mounted) {
     return null; // or return a loading skeleton
   }
-
-const formatTime = (date: Date): string => {
-return date.toLocaleTimeString('sk-SK', {
-  timeZone: 'Europe/Bratislava',
-  hour12: false,
-  hour: '2-digit',
-  minute: '2-digit',
-  second: '2-digit',
-});
-};
-
-const formatDate = (date: Date): string => {
-return date.toLocaleDateString('sk-SK', {
-  timeZone: 'Europe/Bratislava',
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
-};
 
     return(
     <div>
@@ -129,52 +112,103 @@ return date.toLocaleDateString('sk-SK', {
                       </div>
                       <div className="relative mt-6 text-2xl flex flex-col flex-1 gap-y-15 px-4 sm:px-6">
                         <ul>
-                          <h3 className="text-4xl">Services</h3>
-                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/resources/vercel">Vercel</Link>
+                          {/* 1st */}
+                          <li>
+                            <div className="pb-2">
+                              <ul className="spacing-y-3">
+                                <div className="mx-auto">
+                                  {/* Dropdown Header */}
+                                  <button
+                                    onClick={() => setOpenAnalytics(!openAnalytics)}
+                                    className="w-full flex items-center justify-between transition-colors rounded-lg"
+                                  >
+                                    <span className="text-foreground text-4xl">Analytics</span>
+                                    
+                                    {/* Rotating Arrow Icon */}
+                                    <ArrowRightIcon 
+                                      className={`w-5 h-5 text-gray-600 transition-transform duration-300 ${
+                                        openAnalytics ? 'rotate-90' : 'rotate-0'
+                                      }`}
+                                    />
+                                  </button>
+                                  {/* Dropdown Content */}
+                                  <div
+                                    className={`overflow-hidden transition-all duration-300 ${
+                                      openAnalytics ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                                    }`}
+                                  >
+                                    <div className="border-gray-200">
+                                      <ul className="flex flex-col gap-2 pt-2 pb-2">
+                                        <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
+                                          Vercel 
+                                        </li>
+                                        <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
+                                          Supabase
+                                        </li>
+                                        <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
+                                          Github
+                                        </li>
+                                        <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
+                                          Firebase
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </ul>
+                            </div>
                           </li>
-                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/resources/supabase">Supabase</Link>
+                          
+                          {/* 2nd */}
+                          <li>
+                            <div className="pb-2">
+                              <ul className="spacing-y-3">
+                                <div className="mx-auto">
+                                  {/* Dropdown Header */}
+                                  <button
+                                    onClick={() => setOpenStorage(!openStorage)}
+                                    className="w-full flex items-center justify-between transition-colors rounded-lg"
+                                  >
+                                    <span className="text-foreground text-4xl">Storage</span>
+                                    
+                                    {/* Rotating Arrow Icon */}
+                                    <ArrowRightIcon 
+                                      className={`w-5 h-5 text-gray-600 transition-transform duration-300 ${
+                                        openStorage ? 'rotate-90' : 'rotate-0'
+                                      }`}
+                                    />
+                                  </button>
+                                  {/* Dropdown Content */}
+                                  <div
+                                    className={`overflow-hidden transition-all duration-300 ${
+                                      openStorage ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                                    }`}
+                                  >
+                                    <div className="border-gray-200">
+                                      <ul className="flex flex-col gap-2 pt-2 pb-2">
+                                        <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
+                                          WH1
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </ul>
+                            </div>
                           </li>
-                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/resources/github">Github</Link>
+                          <li className="flex flex-col gap-2">
+                            <Link href="">
+                            <span>Settings</span>
+                            </Link>
+                            <Link href="">
+                            <span>Support</span>
+                            </Link>
+                            <Link href="">
+                            <span>Blog</span>
+                            </Link>
                           </li>
-                          <h3 className="text-4xl">Widgets</h3>
-                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard/widgets/project-tracker">Project Tracker</Link>
-                          </li>
-                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard/widgets/todo">To-Do</Link>
-                          </li>
-                          <li className="pl-5 hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard/widgets/notes">Notes</Link>
-                          </li>
-                          <div className="relative pt-2 flex flex-col gap-1">
-                          <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard/account">Settings</Link>
-                          </li>
-                          <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/dashboard/support">Support</Link>
-                          </li>
-                          <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/docs">Docs</Link>
-                          </li>
-                          <li className="hover:translate-x-2 hover:bg-blue-500/30 rounded-lg duration-300">
-                            <Link href="/blog" target="_blank">Blog</Link>
-                          </li>
-                          </div>
                         </ul>
-                        <div className="text-center w-80 bottom-10 left-5 absolute backdrop-blur-md rounded-3xl shadow-background border-foreground border">
-                         <div className="mb-4">
-                          <h1 className="text-2xl font-mono font-bold text-foreground tracking-wider">
-                            {formatTime(currentTime)}
-                          </h1>
-                          <p className="text-xl text-foreground font-light">
-                            {formatDate(currentTime)}
-                          </p>
-                          </div>
-                        </div>
-                        <div className="pl-35 top-28 relative ">
+                        <div className="pl-35 bottom-0 absolute">
                           <AnimatedThemeToggler className="hover:text-black duration-300 cursor-pointer" />
                         </div>
                         <span className="text-sm absolute -bottom-5 pl-28">Version:1.2.6</span>
