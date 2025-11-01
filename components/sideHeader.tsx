@@ -11,6 +11,7 @@ export default function Header() {
     const [open, setOpen] = useState(false)
     const [openAnalytics, setOpenAnalytics] = useState(false);
     const [openStorage, setOpenStorage] = useState(false);
+    const [openTools, setOpenTools] = useState(false);
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isFixed, setIsFixed] = useState(false);
     const [theme, setTheme] = useState<string | null>(null);
@@ -139,18 +140,26 @@ export default function Header() {
                                   >
                                     <div className="border-gray-200">
                                       <ul className="flex flex-col gap-2 pt-2 pb-2">
+                                        <Link href="/resources/vercel">
                                         <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
                                           Vercel 
                                         </li>
+                                        </Link>
+                                        <Link href="/resources/supabase">
                                         <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
                                           Supabase
                                         </li>
+                                        </Link>
+                                        <Link href="/resources/github">
                                         <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
                                           Github
                                         </li>
+                                        </Link>
+                                        <Link href="/resources/firebase">
                                         <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
                                           Firebase
                                         </li>
+                                        </Link>
                                       </ul>
                                     </div>
                                   </div>
@@ -158,7 +167,6 @@ export default function Header() {
                               </ul>
                             </div>
                           </li>
-                          
                           {/* 2nd */}
                           <li>
                             <div className="pb-2">
@@ -186,9 +194,60 @@ export default function Header() {
                                   >
                                     <div className="border-gray-200">
                                       <ul className="flex flex-col gap-2 pt-2 pb-2">
-                                        <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
+                                        <Link href="/storage/wh1">
+                                        <li className="px-4 hover:bg-blue-700/30 duration-300 rounded-4xl cursor-pointer transition-colors">
                                           WH1
                                         </li>
+                                        </Link>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </ul>
+                            </div>
+                          </li>
+                          {/* 3rd */}
+                          <li>
+                            <div className="pb-2">
+                              <ul className="spacing-y-3">
+                                <div className="mx-auto">
+                                  {/* Dropdown Header */}
+                                  <button
+                                    onClick={() => setOpenTools(!openTools)}
+                                    className="w-full flex items-center justify-between transition-colors rounded-lg"
+                                  >
+                                    <span className="text-foreground text-4xl">Tools</span>
+                                    
+                                    {/* Rotating Arrow Icon */}
+                                    <ArrowRightIcon 
+                                      className={`w-5 h-5 text-gray-600 transition-transform duration-300 ${
+                                        openTools ? 'rotate-90' : 'rotate-0'
+                                      }`}
+                                    />
+                                  </button>
+                                  {/* Dropdown Content */}
+                                  <div
+                                    className={`overflow-hidden transition-all duration-300 ${
+                                      openTools ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                                    }`}
+                                  >
+                                    <div className="border-gray-200">
+                                      <ul className="flex flex-col gap-2 pt-2 pb-2">
+                                        <Link href="/dashboard/widgets/#">
+                                        <li className="px-4 hover:bg-blue-700/30 duration-300 rounded-4xl cursor-pointer transition-colors">
+                                          Project tracker
+                                        </li>
+                                        </Link>
+                                        <Link href="/dashboard/widgets/notes">
+                                        <li className="px-4 hover:bg-blue-700/30 duration-300 rounded-4xl cursor-pointer transition-colors">
+                                          Notes
+                                        </li>
+                                        </Link>
+                                        <Link href="/dashboard/widgets/todo">
+                                        <li className="px-4 hover:bg-blue-700/30 duration-300 rounded-4xl cursor-pointer transition-colors">
+                                          To-Do
+                                        </li>
+                                        </Link>
                                       </ul>
                                     </div>
                                   </div>
@@ -197,21 +256,21 @@ export default function Header() {
                             </div>
                           </li>
                           <li className="flex flex-col gap-2">
-                            <Link href="">
-                            <span>Settings</span>
+                            <Link href="/dashboard/account" className="hover:bg-blue-700/30 duration-300 rounded-4xl">
+                            <span>Account</span>
                             </Link>
-                            <Link href="">
+                            <Link href="/dashboard/support" className="hover:bg-blue-700/30 duration-300 rounded-4xl">
                             <span>Support</span>
                             </Link>
-                            <Link href="">
+                            <Link href="/blog" className="hover:bg-blue-700/30 duration-300 rounded-4xl">
                             <span>Blog</span>
                             </Link>
                           </li>
                         </ul>
-                        <div className="pl-35 bottom-0 absolute">
-                          <AnimatedThemeToggler className="hover:text-black duration-300 cursor-pointer" />
+                        <div>
+                         <span className="text-sm absolute -bottom-5 left-2">Version:1.2.6</span>
+                         <AnimatedThemeToggler className="hover:text-black duration-300 cursor-pointer absolute -bottom-5 right-5" />
                         </div>
-                        <span className="text-sm absolute -bottom-5 pl-28">Version:1.2.6</span>
                       </div>
                     </div>
                   </DialogPanel>

@@ -52,51 +52,51 @@ export default function blog() {
         };
     }, []);
     */}
-    return(
-        <div>
-         <header
-  className={`bg-foreground top-0 ${
-    isFixed ? "fixed left-0 right-0" : "relative"
-  } w-full z-50 transition-all duration-300`}
->
-  <div className="text-start text-background p-5 font-work-sans transition-all duration-300">
-    <h1
-      className={`transition-all duration-300 ${
-        isFixed ? "text-center text-6xl" : "text-6xl"
-      }`}
-    >
-      Webhub blog
-    </h1>
-    <h3
-      className={`text-4xl transition-all duration-300 ${
-        isFixed
-          ? "opacity-0 max-h-0 overflow-hidden"
-          : "opacity-100 max-h-20"
-      }`}
-    >
-      Latest news around webhub
-    </h3>
-  </div>
+        return(
+       <div>
+              <header
+              className={`bg-foreground top-0 ${
+              isFixed ? "fixed left-0 right-0" : "relative"
+              } w-full z-50 transition-all duration-300`}
+              >
+              <div className="text-start text-background p-5 font-work-sans transition-all duration-300">
+              <h1
+                className={`transition-all duration-300 ${
+                  isFixed ? "text-center text-6xl" : "text-6xl"
+                }`}
+              >
+                Webhub blog
+              </h1>
+              <h3
+                className={`text-4xl transition-all duration-300 ${
+                  isFixed
+                    ? "opacity-0 max-h-0 overflow-hidden"
+                    : "opacity-100 max-h-20"
+                }`}
+              >
+          Latest news around webhub
+        </h3>
+        </div>
 
-  {/* Tooltip Section */}
-  <div className="absolute right-20 top-15">
-    <Link href="/dashboard" className="group relative inline-block">
-      <img
-        src="favicon.ico"
-        alt="Return to Webhub"
-        className="h-10 w-10 cursor-pointer"
-        aria-describedby="tooltip-webhub"
-      />
-      <span
-        id="tooltip-webhub"
-        role="tooltip"
-        className="absolute top-12 left-1/2 -translate-x-1/2 bg-background text-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-[9999]"
-      >
-        Return to Webhub
-      </span>
-    </Link>
-  </div>
-</header>
+        {/* Tooltip Section */}
+        <div className="absolute right-20 top-15">
+        <Link href="/dashboard" className="group relative inline-block">
+          <img
+            src="favicon.ico"
+            alt="Return to Webhub"
+            className="h-10 w-10 cursor-pointer"
+            aria-describedby="tooltip-webhub"
+          />
+          <span
+            id="tooltip-webhub"
+            role="tooltip"
+            className="absolute top-12 left-1/2 -translate-x-1/2 bg-background text-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-[9999]"
+          >
+            Return to Webhub
+          </span>
+        </Link>
+        </div>
+        </header>
 
          <div className="bg-gray-900 py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -107,64 +107,28 @@ export default function blog() {
                 </div>
                 <div className="relative mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-gray-700 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     <div className="w-sm h-90 bg-background overflow-hidden rounded-2xl">
+                      <Link href="/blog/Articles/1.5-update">
                         <img
-                        src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070"
+                        src="/01112025.png"
                         className="object-cover relative w-full h-full rounded-2xl hover:scale-110 duration-300" />
                         <div className="flex flex-col z-40 backdrop-blur-md pl-3 bg-black/20 text-white bottom-24 relative rounded-b-2xl">
-                            <span>Welcome to Webhub!</span>
-                            <span>learn about webhub, what it is capable of and make it your #1 tool for your everyday use.</span>
-                            <span>October 29th, 2025</span>                           
+                            <span>Changelog: 1.5</span>
+                            <span>1.5 update brought many new pleasent features and improvements for your dashboard</span>
+                            <span>01/11/2025</span>                           
                         </div>
+                        </Link>
                     </div>
                     <div className="w-sm h-90 bg-background overflow-hidden rounded-2xl">
+                      <Link href="/blog/Articles/welcome-to-webhub">
                         <img
                         src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070"
                         className="object-cover relative w-full h-full rounded-2xl hover:scale-110 duration-300" />
                         <div className="flex flex-col z-40 backdrop-blur-md pl-3 bg-black/20 text-white bottom-24 relative rounded-b-2xl">
                             <span>Welcome to Webhub!</span>
                             <span>learn about webhub, what it is capable of and make it your #1 tool for your everyday use.</span>
-                            <span>October 29th, 2025</span>                           
+                            <span>29/10/2025</span>                           
                         </div>
-                    </div>
-                  <div className="w-sm h-90 bg-background overflow-hidden rounded-2xl">
-                        <img
-                        src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070"
-                        className="object-cover relative w-full h-full rounded-2xl hover:scale-110 duration-300" />
-                        <div className="flex flex-col z-40 backdrop-blur-md pl-3 bg-black/20 text-white bottom-24 relative rounded-b-2xl">
-                            <span>Welcome to Webhub!</span>
-                            <span>learn about webhub, what it is capable of and make it your #1 tool for your everyday use.</span>
-                            <span>October 29th, 2025</span>                           
-                        </div>
-                    </div>
-                    <div className="w-sm h-90 bg-background overflow-hidden rounded-2xl">
-                        <img
-                        src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070"
-                        className="object-cover relative w-full h-full rounded-2xl hover:scale-110 duration-300" />
-                        <div className="flex flex-col z-40 backdrop-blur-md pl-3 bg-black/20 text-white bottom-24 relative rounded-b-2xl">
-                            <span>Welcome to Webhub!</span>
-                            <span>learn about webhub, what it is capable of and make it your #1 tool for your everyday use.</span>
-                            <span>October 29th, 2025</span>                           
-                        </div>
-                    </div>
-                   <div className="w-sm h-90 bg-background overflow-hidden rounded-2xl">
-                        <img
-                        src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070"
-                        className="object-cover relative w-full h-full rounded-2xl hover:scale-110 duration-300" />
-                        <div className="flex flex-col z-40 backdrop-blur-md pl-3 bg-black/20 text-white bottom-24 relative rounded-b-2xl">
-                            <span>Welcome to Webhub!</span>
-                            <span>learn about webhub, what it is capable of and make it your #1 tool for your everyday use.</span>
-                            <span>October 29th, 2025</span>                           
-                        </div>
-                    </div>
-                    <div className="w-sm h-90 bg-background overflow-hidden rounded-2xl">
-                        <img
-                        src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070"
-                        className="object-cover relative w-full h-full rounded-2xl hover:scale-110 duration-300" />
-                        <div className="flex flex-col z-40 backdrop-blur-md pl-3 bg-black/20 text-white bottom-24 relative rounded-b-2xl">
-                            <span>Welcome to Webhub!</span>
-                            <span>learn about webhub, what it is capable of and make it your #1 tool for your everyday use.</span>
-                            <span>October 29th, 2025</span>                           
-                        </div>
+                        </Link>
                     </div>
                 </div>
              </div>
