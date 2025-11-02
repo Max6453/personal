@@ -3,27 +3,27 @@
 import { useState, useEffect } from 'react';
 import { Github, Users, TrendingUp, Activity } from 'lucide-react';
 import { StatCard } from './stat-card';
+import { useTokens } from '@/lib/token-context';
 
-interface GithubDashboardProps {
-  token?: string;
-}
-
-export default function GithubDashboard({ token }: GithubDashboardProps) {
+export default function GithubDashboard() {
+  const { githubToken } = useTokens(); // Get token from context
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (token) {
+    if (githubToken) {
       fetchStats();
+    } else {
+      setLoading(false);
     }
-  }, [token]);
+  }, [githubToken]);
 
   const fetchStats = async () => {
     try {
       setLoading(true);
       const response = await fetch('https://api.github.com/user', {
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${githubToken}`,
           'Accept': 'application/vnd.github.v3+json',
         },
       });
@@ -38,7 +38,7 @@ export default function GithubDashboard({ token }: GithubDashboardProps) {
     }
   };
 
-  if (!token) {
+  if (!githubToken) {
     return (
       <div className="rounded-2xl shadow-sm p-12 text-center border border-gray-100">
         <Github className="w-16 h-16 text-gray-300 mx-auto mb-4" />
@@ -62,7 +62,7 @@ export default function GithubDashboard({ token }: GithubDashboardProps) {
       )}
 
       {stats && (
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard icon={Github} title="Repositories" value={stats.public_repos || 0} />
           <StatCard icon={Users} title="Followers" value={stats.followers || 0} />
           <StatCard icon={TrendingUp} title="Following" value={stats.following || 0} />

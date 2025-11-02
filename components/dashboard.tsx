@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import { BarChart3, Settings } from 'lucide-react';
 import { Connection } from '@/types/dashboard';
-import VercelDashboardComponent from '@/app/resources/components/vercel-dashboard';
-import SupabaseDashboardComponent from '@/app/resources/components/supabase-dashboard';
-import GithubDashboardComponent from '@/app/resources/components/github-dashboard';
+import VercelDashboardComponent from '@/app/dashboard/resources/components/vercel-dashboard';
+import SupabaseDashboardComponent from '@/app/dashboard/resources/components/supabase-dashboard';
+import GithubDashboardComponent from '@/app/dashboard/resources/components/github-dashboard';
 import SettingsPage from '@/app/dashboard/account/page';
 
 interface MultiPlatformDashboardProps {

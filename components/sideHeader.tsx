@@ -140,22 +140,22 @@ export default function Header() {
                                   >
                                     <div className="border-gray-200">
                                       <ul className="flex flex-col gap-2 pt-2 pb-2">
-                                        <Link href="/resources/vercel">
+                                        <Link href="/dashboard/resources/vercel" target="_blank">
                                         <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
                                           Vercel 
                                         </li>
                                         </Link>
-                                        <Link href="/resources/supabase">
+                                        <Link href="/dashboard/resources/supabase" target="_blank">
                                         <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
                                           Supabase
                                         </li>
                                         </Link>
-                                        <Link href="/resources/github">
+                                        <Link href="/dashboard/resources/github" target="_blank">
                                         <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
                                           Github
                                         </li>
                                         </Link>
-                                        <Link href="/resources/firebase">
+                                        <Link href="/dashboard/resources/firebase" target="_blank">
                                         <li className="px-4 hover:bg-blue-500/30 rounded cursor-pointer transition-colors">
                                           Firebase
                                         </li>
@@ -194,7 +194,7 @@ export default function Header() {
                                   >
                                     <div className="border-gray-200">
                                       <ul className="flex flex-col gap-2 pt-2 pb-2">
-                                        <Link href="/storage/wh1">
+                                        <Link href="/dashboard/storage/wh1">
                                         <li className="px-4 hover:bg-blue-700/30 duration-300 rounded-4xl cursor-pointer transition-colors">
                                           WH1
                                         </li>
@@ -233,7 +233,7 @@ export default function Header() {
                                   >
                                     <div className="border-gray-200">
                                       <ul className="flex flex-col gap-2 pt-2 pb-2">
-                                        <Link href="/dashboard/widgets/#">
+                                        <Link href="/dashboard/widgets/project-tracker">
                                         <li className="px-4 hover:bg-blue-700/30 duration-300 rounded-4xl cursor-pointer transition-colors">
                                           Project tracker
                                         </li>

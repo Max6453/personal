@@ -1,10 +1,11 @@
 export interface Connection {
   id: string;
-  platform: 'vercel' | 'supabase' | 'github';
+  platform: string;
   name: string;
   isConnected: boolean;
   connectedAt?: string;
   token?: string;
+  projectUrl?: string; // Add this for Supabase
 }
 
 export interface AnalyticsData {

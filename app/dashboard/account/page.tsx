@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Settings, LogOut, Key, User, Mail, Shield, ExternalLink } from 'lucide-react';
 import { Connection } from '@/types/dashboard';
-import ConnectionCard from '@/app/resources/components/connection-card';
+import ConnectionCard from '../resources/components/connection-card';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase';
 interface SettingsPageProps {
@@ -40,25 +40,32 @@ export default function SettingsPage({
     }
   }, [connections]);
 
-  const handleConnect = (id: string, token: string) => {
-    setConnections((prev) =>
-      prev.map((c) =>
-        c.id === id ? { ...c, isConnected: true, connectedAt: new Date().toLocaleDateString(), token } : c
-      )
-    );
-  };
+const handleConnect = (id: string, token: string) => {
+  setConnections((prev) =>
+    prev.map((c) =>
+      c.id === id ? { ...c, isConnected: true, connectedAt: new Date().toLocaleDateString(), token } : c
+    )
+  );
+  
+  // Trigger custom event to notify other components
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('tokensUpdated'));
+  }
+};
 
-  const handleDisconnect = (id: string) => {
-    setConnections((prev) =>
-      prev.map((c) =>
-        c.id === id ? { ...c, isConnected: false, connectedAt: undefined, token: undefined } : c
-      )
-    );
-  };
-
-  const vercelToken = connections.find((c: Connection) => c.id === 'vercel')?.token;
-  const supabaseToken = connections.find((c: Connection) => c.id === 'supabase')?.token;
-  const githubToken = connections.find((c: Connection) => c.id === 'github')?.token;
+const handleDisconnect = (id: string) => {
+  setConnections((prev) =>
+    prev.map((c) =>
+      c.id === id ? { ...c, isConnected: false, connectedAt: undefined, token: undefined } : c
+    )
+  );
+  
+  // Trigger custom event to notify other components
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('tokensUpdated'));
+  }
+};
+  
   const supabase = createClient();
 
   const updateEmail = async (e: React.FormEvent) => {

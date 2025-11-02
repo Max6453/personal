@@ -2,6 +2,7 @@
 
 import { Globe, ExternalLink, CheckCircle, XCircle, Clock, Activity } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useTokens } from '@/lib/token-context';
 
 interface Deployment {
   id: string;
@@ -24,7 +25,8 @@ interface VercelDashboardProps {
   token?: string;
 }
 
-export default function VercelDashboard({ token }: VercelDashboardProps) {
+export default function VercelDashboard() {
+  const { vercelToken } = useTokens();
   const [deployments, setDeployments] = useState<Deployment[]>([]);
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [loading, setLoading] = useState(true);
@@ -32,17 +34,11 @@ export default function VercelDashboard({ token }: VercelDashboardProps) {
   const [error, setError] = useState('');
   const [selectedProjectId, setSelectedProjectId] = useState('');
 
-  useEffect(() => {
-    if (token) {
+useEffect(() => {
+    if (vercelToken) {
       fetchDeployments();
     }
-  }, [token]);
-
-  useEffect(() => {
-    if (token && selectedProjectId) {
-      fetchAnalytics();
-    }
-  }, [token, selectedProjectId]);
+  }, [vercelToken]);
 
   const fetchDeployments = async () => {
     try {
@@ -51,7 +47,7 @@ export default function VercelDashboard({ token }: VercelDashboardProps) {
       
       const response = await fetch('https://api.vercel.com/v6/deployments?limit=20', {
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${vercelToken}`,
         },
       });
       
@@ -59,11 +55,6 @@ export default function VercelDashboard({ token }: VercelDashboardProps) {
       const data = await response.json();
       
       setDeployments(data.deployments || []);
-      
-      // Get first deployment's project ID for analytics
-      if (data.deployments?.length > 0 && data.deployments[0].projectId) {
-        setSelectedProjectId(data.deployments[0].projectId);
-      }
     } catch (err) {
       setError('Failed to load deployments. Check your token.');
       console.error(err);
@@ -84,7 +75,7 @@ export default function VercelDashboard({ token }: VercelDashboardProps) {
         `https://api.vercel.com/v1/analytics?projectId=${selectedProjectId}&from=${startDate}&to=${endDate}`,
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${vercelToken}`,
           },
         }
       );
@@ -173,12 +164,12 @@ export default function VercelDashboard({ token }: VercelDashboardProps) {
     return date.toLocaleDateString();
   };
 
-  if (!token) {
+  if (!vercelToken) {
     return (
       <div className="bg-background rounded-2xl shadow-sm p-12 text-center border border-gray-100">
         <Globe className="w-16 h-16 text-gray-300 mx-auto mb-4" />
         <p className="text-gray-500 text-lg font-medium">No Vercel Token Connected</p>
-        <p className="text-gray-400 text-sm mt-2">Connect your Vercel account to view deployments and analytics</p>
+        <p className="text-gray-400 text-sm mt-2">Connect your Vercel account in Settings to view deployments</p>
       </div>
     );
   }

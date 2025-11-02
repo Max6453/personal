@@ -1,11 +1,12 @@
 'use client'
 import Link from "next/link";
-import VercelAnalyticsDashboard from "@/components/dashboard";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { SupabaseClient, User } from "@supabase/supabase-js";
-import AnalyticsDashboard from "@/components/vercel/quickDashboard";
+import VercelDashboard from "./resources/components/vercel-dashboard";
+import GithubDashboard from "./resources/components/github-dashboard";
+import SupabaseDashboard from "./resources/components/supabase-dashboard";
 
 export default function Home() {
   const [user, setUser] = useState<User | null>(null);
@@ -69,16 +70,17 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <section>
-        <VercelAnalyticsDashboard />
-      </section>
 
-      <section className="p-10">
        <h1 className="text-4xl font-bold font-work-sans">Latest analytics</h1>
+      <section className="p-15 grid grid-cols-2 gap-x-10">
+        <div className="h-dvh overflow-scroll">
+          <VercelDashboard/>
+        </div>
+       <GithubDashboard/>
       </section>
-      <article>
-        <AnalyticsDashboard/>
-      </article>
+      <section className="p-15 spacing-x-3">
+        <SupabaseDashboard/>
+      </section>
     </div>
   );
 }
