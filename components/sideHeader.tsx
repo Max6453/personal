@@ -194,7 +194,7 @@ export default function Header() {
                                   >
                                     <div className="border-gray-200">
                                       <ul className="flex flex-col gap-2 pt-2 pb-2">
-                                        <Link href="/dashboard/storage/wh1">
+                                        <Link href="/dashboard/storage/wh1" target="_blank">
                                         <li className="px-4 hover:bg-blue-700/30 duration-300 rounded-4xl cursor-pointer transition-colors">
                                           WH1
                                         </li>
@@ -233,17 +233,17 @@ export default function Header() {
                                   >
                                     <div className="border-gray-200">
                                       <ul className="flex flex-col gap-2 pt-2 pb-2">
-                                        <Link href="/dashboard/widgets/project-tracker">
+                                        <Link href="/dashboard/widgets/project-tracker" target="_blank">
                                         <li className="px-4 hover:bg-blue-700/30 duration-300 rounded-4xl cursor-pointer transition-colors">
                                           Project tracker
                                         </li>
                                         </Link>
-                                        <Link href="/dashboard/widgets/notes">
+                                        <Link href="/dashboard/widgets/notes" target="_blank">
                                         <li className="px-4 hover:bg-blue-700/30 duration-300 rounded-4xl cursor-pointer transition-colors">
                                           Notes
                                         </li>
                                         </Link>
-                                        <Link href="/dashboard/widgets/todo">
+                                        <Link href="/dashboard/widgets/todo" target="_blank">
                                         <li className="px-4 hover:bg-blue-700/30 duration-300 rounded-4xl cursor-pointer transition-colors">
                                           To-Do
                                         </li>
