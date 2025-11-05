@@ -71,7 +71,7 @@ export default function Home() {
         </div>
       </main>
 
-       <h1 className="text-4xl font-bold font-work-sans">Latest analytics</h1>
+       <h1 className="text-4xl font-bold p-15 font-work-sans">Quick View</h1>
       <section className="p-15 grid grid-cols-2 gap-x-10">
                 <div className="h-dvh overflow-scroll">
           <VercelDashboard/>

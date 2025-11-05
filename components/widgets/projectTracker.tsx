@@ -322,7 +322,7 @@ export default function ProjectTracker() {
 
   if (!supabaseToken || !projectUrl) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm p-12 text-center border border-gray-100">
+      <div className="bg-background rounded-2xl shadow-sm p-12 text-center border border-gray-100">
         <FolderKanban className="w-16 h-16 text-gray-300 mx-auto mb-4" />
         <p className="text-gray-500 text-lg font-medium">No Supabase Connection</p>
         <p className="text-gray-400 text-sm mt-2">Connect Supabase in Settings to use project tracker</p>
@@ -333,7 +333,7 @@ export default function ProjectTracker() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 rounded-2xl shadow-xl p-8 text-white">
+      <div className="bg-gradient-to-r from-blue-800 to-blue-600 rounded-2xl shadow-xl p-8 text-white">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-3xl font-bold mb-2">Project Tracker</h2>
@@ -361,13 +361,13 @@ export default function ProjectTracker() {
           <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-200 border-t-purple-600"></div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">  
           {projects.map((project) => (
             <div
               key={project.id}
-              className={`bg-white rounded-xl shadow-sm border-2 transition-all cursor-pointer ${
+              className={`bg-background rounded-xl shadow-sm border-2 transition-all cursor-pointer ${
                 selectedProject === project.id
-                  ? 'border-purple-600 shadow-lg'
+                  ? 'border-blue-600 shadow-lg'
                   : 'border-gray-100 hover:border-purple-300'
               }`}
               onClick={() => setSelectedProject(project.id)}
@@ -375,8 +375,8 @@ export default function ProjectTracker() {
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{project.name}</h3>
-                    <p className="text-sm text-gray-600 line-clamp-2">{project.description}</p>
+                    <h3 className="text-lg font-bold text-blue-800 mb-2">{project.name}</h3>
+                    <p className="text-sm text-blue-600 line-clamp-2">{project.description}</p>
                   </div>
                   <button
                     onClick={(e) => {
@@ -418,7 +418,7 @@ export default function ProjectTracker() {
           ))}
 
           {projects.length === 0 && (
-            <div className="col-span-full bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
+            <div className="col-span-full bg-background rounded-xl shadow-sm border border-gray-100 p-12 text-center">
               <FolderKanban className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <p className="text-gray-500 text-lg">No projects yet</p>
               <p className="text-gray-400 text-sm mt-2">Create your first project to get started</p>
@@ -429,7 +429,7 @@ export default function ProjectTracker() {
 
       {/* Tasks Section */}
       {selectedProject && (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-background rounded-xl shadow-sm border border-gray-100">
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-bold text-gray-900">Tasks</h3>
@@ -514,10 +514,10 @@ export default function ProjectTracker() {
       {/* Create Project Modal */}
       {showProjectModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-background rounded-xl shadow-xl max-w-md w-full max-h-[90vh]">
             <div className="p-6 border-b border-gray-100">
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-bold text-gray-900">Create New Project</h3>
+                <h3 className="text-xl font-bold text-blue-800">Create New Project</h3>
                 <button
                   onClick={() => setShowProjectModal(false)}
                   className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -527,9 +527,9 @@ export default function ProjectTracker() {
               </div>
             </div>
 
-            <form onSubmit={handleCreateProject} className="p-6 space-y-4">
+            <form onSubmit={handleCreateProject} className="p-6 space-y-4 h-screen">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-blue-700 mb-1">
                   Project Name *
                 </label>
                 <input
@@ -537,7 +537,7 @@ export default function ProjectTracker() {
                   required
                   value={projectForm.name}
                   onChange={(e) => setProjectForm({ ...projectForm, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 py-2 border bg-background border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Enter project name"
                 />
               </div>
@@ -549,7 +549,7 @@ export default function ProjectTracker() {
                 <textarea
                   value={projectForm.description}
                   onChange={(e) => setProjectForm({ ...projectForm, description: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 py-2 border bg-background border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   rows={3}
                   placeholder="Enter project description"
                 />
@@ -563,7 +563,7 @@ export default function ProjectTracker() {
                   <select
                     value={projectForm.status}
                     onChange={(e) => setProjectForm({ ...projectForm, status: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-3 py-2 border bg-background border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="planning">Planning</option>
                     <option value="in-progress">In Progress</option>
@@ -579,7 +579,7 @@ export default function ProjectTracker() {
                   <select
                     value={projectForm.priority}
                     onChange={(e) => setProjectForm({ ...projectForm, priority: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-3 py-2 border-2 bg-background  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -597,7 +597,7 @@ export default function ProjectTracker() {
                     type="date"
                     value={projectForm.start_date}
                     onChange={(e) => setProjectForm({ ...projectForm, start_date: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-3 py-2 border bg-background border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
 
@@ -609,7 +609,7 @@ export default function ProjectTracker() {
                     type="date"
                     value={projectForm.end_date}
                     onChange={(e) => setProjectForm({ ...projectForm, end_date: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-3 py-2 border bg-background border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
               </div>
@@ -638,7 +638,7 @@ export default function ProjectTracker() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                  className="flex-1 px-4 py-2 bg-blue-800 to-blue-600 text-white rounded-lg transition-colors"
                 >
                   Create Project
                 </button>

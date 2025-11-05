@@ -20,9 +20,9 @@ export default function Header() {
     useEffect(() => {
       const handleScroll = () => {
         const scrollPosition = window.scrollY || window.pageYOffset;
-        console.log('Scroll position:', scrollPosition); // Debug log
         
-        if (scrollPosition > 100) {
+        if (scrollPosition > 10 
+        ) {
           setIsFixed(true);
         } else {
           setIsFixed(false);
@@ -106,7 +106,7 @@ export default function Header() {
                       <div className="px-2 sm:px-6">
                         <DialogTitle className="font-semibold text-2xl flex gap-4 text-foreground">
                           <Link href="/dashboard">
-                          <img src="favicon.ico" className="size-12 hover:-rotate-10 duration-300 shadow-black"/>
+                          <img src="/favicon.ico" className="size-12 hover:-rotate-10 duration-300 shadow-black"/>
                           </Link>
                           <span className="font-work-sans pt-2.5">WEBHUB</span>
                         </DialogTitle>

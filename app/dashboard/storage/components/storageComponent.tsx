@@ -273,7 +273,7 @@ export default function S3Storage() {
 
   if (!supabaseToken || !projectUrl) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm p-12 text-center border border-gray-100">
+      <div className="bg-background rounded-2xl shadow-sm p-12 text-center border border-gray-100">
         <Folder className="w-16 h-16 text-gray-300 mx-auto mb-4" />
         <p className="text-gray-500 text-lg font-medium">No Supabase Connection</p>
         <p className="text-gray-400 text-sm mt-2">Connect Supabase in Settings to use storage</p>
@@ -285,8 +285,8 @@ export default function S3Storage() {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 rounded-2xl shadow-xl p-8 text-white">
-        <h2 className="text-3xl font-bold mb-2">File Storage (S3 Clone)</h2>
-        <p className="text-blue-100">Upload and manage your files</p>
+        <h2 className="text-3xl font-bold font-work-sans mb-2">WH1</h2>
+        <p className="text-blue-100">Store and download your files</p>
       </div>
 
       {error && (
@@ -299,7 +299,7 @@ export default function S3Storage() {
       )}
 
       {/* Controls */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <div className="bg-background rounded-xl shadow-sm border border-gray-100 p-6">
         <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
           <div className="flex gap-2 flex-1">
             <div className="relative flex-1">
@@ -382,7 +382,7 @@ export default function S3Storage() {
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50">
+              <thead className="bg-background">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Name
@@ -401,7 +401,7 @@ export default function S3Storage() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-background divide-y divide-gray-200">
                 {filteredFiles.map((file) => (
                   <tr key={file.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -444,7 +444,7 @@ export default function S3Storage() {
           </div>
         </div>
       ) : (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
+        <div className="bg-background rounded-xl shadow-sm border border-gray-100 p-12 text-center">
           <Folder className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <p className="text-gray-500 text-lg">No files in this bucket</p>
           <p className="text-gray-400 text-sm mt-2">Upload some files to get started</p>
@@ -454,10 +454,10 @@ export default function S3Storage() {
       {/* Create Bucket Modal */}
       {showBucketModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-xl max-w-md w-full">
+          <div className="bg-background rounded-xl shadow-xl max-w-md w-full">
             <div className="p-6 border-b border-gray-100">
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-bold text-gray-900">Create New Bucket</h3>
+                <h3 className="text-xl font-bold text-foreground">Create New Bucket</h3>
                 <button
                   onClick={() => {
                     setShowBucketModal(false);
@@ -473,7 +473,7 @@ export default function S3Storage() {
 
             <div className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-foreground mb-1">
                   Bucket Name
                 </label>
                 <input
@@ -495,7 +495,7 @@ export default function S3Storage() {
                     setNewBucketName('');
                     setError('');
                   }}
-                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex-1 px-4 py-2 border border-gray-300 text-foreground rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   Cancel
                 </button>

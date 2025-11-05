@@ -243,7 +243,7 @@ export default function SupabaseDashboard() {
 
   if (!supabaseToken) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm p-12 text-center border border-gray-100">
+      <div className="bg-background rounded-2xl shadow-sm p-12 text-center border border-gray-100">
         <Database className="w-16 h-16 text-gray-300 mx-auto mb-4" />
         <p className="text-gray-500 text-lg font-medium">No Supabase Token Connected</p>
         <p className="text-gray-400 text-sm mt-2">Connect your Supabase account in Settings to view database stats</p>
@@ -259,7 +259,7 @@ export default function SupabaseDashboard() {
           <p className="text-green-100">Real-time database and authentication</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-100">
+        <div className="bg-background rounded-2xl shadow-sm p-8 border border-gray-100">
           <h3 className="text-xl font-bold text-gray-900 mb-4">Enter Your Project URL</h3>
           <p className="text-gray-600 mb-4">
             Please enter your Supabase project URL to continue. You can find this in your project settings.
@@ -320,7 +320,7 @@ export default function SupabaseDashboard() {
         )}
 
         {/* Table Data */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="bg-background rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-center justify-between">
               <div>
@@ -359,7 +359,7 @@ export default function SupabaseDashboard() {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-background divide-y divide-gray-200">
                   {tableData.map((row, rowIndex) => (
                     <tr key={rowIndex} className="hover:bg-gray-50">
                       {tableColumns.map((column) => (
@@ -412,7 +412,7 @@ export default function SupabaseDashboard() {
       )}
 
       {/* Connection Info */}
-      <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+      <div className="bg-background rounded-2xl shadow-sm p-6 border border-gray-100">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <CheckCircle className="w-8 h-8 text-green-500" />
@@ -433,7 +433,7 @@ export default function SupabaseDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 bg-white rounded-xl shadow-sm border border-gray-100 p-2">
+      <div className="flex gap-2 bg-background rounded-xl shadow-sm border border-gray-100 p-2">
         <button
           onClick={() => setActiveTab('tables')}
           className={`flex items-center gap-2 px-6 py-3 rounded-lg transition-colors flex-1 ${
@@ -464,7 +464,7 @@ export default function SupabaseDashboard() {
           <div className="animate-spin rounded-full h-12 w-12 border-4 border-green-200 border-t-green-600"></div>
         </div>
       ) : (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-background rounded-xl shadow-sm border border-gray-100">
           {activeTab === 'tables' ? (
             <>
               <div className="p-6 border-b border-gray-100">
@@ -483,14 +483,14 @@ export default function SupabaseDashboard() {
                     >
                       <div className="flex items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-lg bg-background flex items-center justify-center">
                             <Table className="w-5 h-5 text-green-600" />
                           </div>
                           <div>
-                            <h4 className="font-semibold text-gray-900">
+                            <h4 className="font-semibold text-green-600">
                               {table.table_name}
                             </h4>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-green-600">
                               Schema: {table.table_schema || 'public'}
                             </p>
                           </div>
@@ -514,7 +514,7 @@ export default function SupabaseDashboard() {
             <>
               <div className="p-6 border-b border-gray-100">
                 <h3 className="text-xl font-bold text-green-700">Authentication Users</h3>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-green-600 mt-1">
                   {authUsers.length} user{authUsers.length !== 1 ? 's' : ''} registered
                 </p>
               </div>
@@ -531,7 +531,7 @@ export default function SupabaseDashboard() {
                             <Users className="w-5 h-5 text-green-600" />
                           </div>
                           <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900">
+                            <h4 className="font-semibold text-green-600">
                               {user.email}
                             </h4>
                             <div className="flex flex-wrap gap-4 text-sm text-gray-500 mt-2">
@@ -571,18 +571,6 @@ export default function SupabaseDashboard() {
           )}
         </div>
       )}
-
-      {/* Info Note */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-        <h4 className="font-semibold text-blue-900 mb-2">💡 Important Notes</h4>
-        <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
-          <li>Click on any table to view its data (limited to 100 rows)</li>
-          <li>To view tables, your <strong>anon/public key</strong> should work if tables exist in the public schema</li>
-          <li>To view authentication users, you need a <strong>service_role</strong> key (not anon key)</li>
-          <li>The service_role key has admin privileges - keep it secure!</li>
-          <li>Find your keys in: Project Settings → API → Project API keys</li>
-        </ul>
-      </div>
     </div>
   );
 }
