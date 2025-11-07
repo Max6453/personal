@@ -359,9 +359,9 @@ export default function SupabaseDashboard() {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="bg-background divide-y divide-gray-200">
+                <tbody className="bg-green-500 divide-y divide-gray-200">
                   {tableData.map((row, rowIndex) => (
-                    <tr key={rowIndex} className="hover:bg-gray-50">
+                    <tr key={rowIndex}>
                       {tableColumns.map((column) => (
                         <td
                           key={column}
@@ -417,7 +417,7 @@ export default function SupabaseDashboard() {
           <div className="flex items-center gap-3">
             <CheckCircle className="w-8 h-8 text-green-500" />
             <div>
-              <p className="font-semibold text-gray-900">Connected</p>
+              <p className="font-semibold text-green-500">Connected</p>
               <p className="text-sm text-gray-500">{projectUrl}</p>
             </div>
           </div>

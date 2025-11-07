@@ -6,10 +6,10 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { CloudArrowUpIcon, ComputerDesktopIcon , CheckIcon } from '@heroicons/react/20/solid'
 
 const navigation = [
-  { name: 'Docs', href: '/notes' },
-  { name: 'Getting started', href: '#' },
-  { name: 'Pricing', href: '#' },
-  { name: 'Contact', href: '#' },
+  { name: 'Docs', href: '/pages/docs' },
+  { name: 'Getting started', href: '/auth/signup' },
+  { name: 'Pricing', href: '/Pricing' },
+  { name: 'Contact', href: '/pages/contact' },
 ]
 
 const features = [
@@ -58,19 +58,20 @@ export default function Example() {
               <Bars3Icon aria-hidden="true" className="size-6" />
             </button>
           </div>
-          <div className="hidden lg:flex lg:gap-x-12">
+          <div className="hidden lg:flex lg:gap-x-12 w-110 h-15 bg-gray-800 rounded-full">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-white hover:scale-120 duration-300 hover:bg-foreground p-0.5 rounded-xs">
+              <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-white hover:scale-110 duration-300 hover:text-foreground pl-3.5 p-0.5 pt-4">
                 {item.name}
               </a>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/auth/login" target='_blank' className="text-sm/6 font-semibold text-white hover:text-foreground duration-300">
+            <a href="/auth/login" target='_blank' className="text-sm/6 font-semibold bg-gray-800 hover:bg-background w-25 rounded-2xl p-3 pl-5 text-white hover:text-foreground duration-300">
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </nav>
+        {/* MOBILE MENU */}
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
           <div className="fixed inset-0 z-50" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
