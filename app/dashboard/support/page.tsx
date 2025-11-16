@@ -110,7 +110,6 @@ export default function SupportTicketSystem() {
 
   return (
     <div>
-      <Header/>
       <div className="bg-background p-6">
         <div className="max-w-6xl mx-auto">
           {/* Ticket Submission Form */}

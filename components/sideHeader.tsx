@@ -268,7 +268,6 @@ export default function Header() {
                           </li>
                         </ul>
                         <div>
-                         <span className="text-sm absolute -bottom-5 left-2">Version:1.2.6</span>
                          <AnimatedThemeToggler className="hover:text-black duration-300 cursor-pointer absolute -bottom-5 right-5" />
                         </div>
                       </div>

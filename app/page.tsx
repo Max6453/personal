@@ -8,7 +8,7 @@ import { CloudArrowUpIcon, ComputerDesktopIcon , CheckIcon } from '@heroicons/re
 const navigation = [
   { name: 'Docs', href: '/pages/docs' },
   { name: 'Getting started', href: '/auth/signup' },
-  { name: 'Pricing', href: '/Pricing' },
+  { name: 'Pricing', href: '#Pricing' },
   { name: 'Contact', href: '/pages/contact' },
 ]
 
@@ -190,7 +190,7 @@ export default function Example() {
       </div>
     </div>
 
-    <div className="relative isolate overflow-hidden font-roboto bg-gray-900 py-16 sm:py-24 lg:py-32">
+    <div className="relative isolate overflow-hidden font-roboto bg-gray-900 py-16 sm:py-24 lg:py-32" id='Pricing'>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl justify-items-center gap-x-8 gap-y-16 lg:max-w-none">
           <div className="max-w-xl lg:max-w-lg">
