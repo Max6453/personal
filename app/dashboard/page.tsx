@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { SupabaseClient, User } from "@supabase/supabase-js";
 import VercelDashboard from "./resources/components/vercel-dashboard";
 import GithubDashboard from "./resources/components/github-dashboard";
+import GithubPage from "./resources/github/page";
 import SupabaseDashboard from "./resources/components/supabase-dashboard";
 
 export default function Home() {
@@ -72,11 +73,11 @@ export default function Home() {
       </main>
 
        <h1 className="text-4xl font-bold p-15 font-work-sans">Quick View</h1>
-      <section className="p-15 grid grid-cols-2 gap-x-10">
-                <div className="h-dvh overflow-scroll">
+      <section className="p-15 grid grid-cols-2 gap-x-10 overflow-y-scroll">
+       <div className="h-dvh overflow-scroll">
           <VercelDashboard/>
         </div>
-       <GithubDashboard/>
+       <GithubPage/>
       </section>
       <section className="p-15 spacing-x-3">
         <SupabaseDashboard/>
