@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import GithubDashboard from '../components/github-dashboard';
+import LastDeployments from '../components/last-deployments';
 import { useTokens } from '@/lib/token-context';
 
 interface GitHubIssue {
@@ -32,7 +33,7 @@ export default function GithubPage() {
   const [issues, setIssues] = useState<GitHubIssue[]>([]);
   const [pullRequests, setPullRequests] = useState<GitHubPullRequest[]>([]);
   const [dataLoading, setDataLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<'issues' | 'prs' | 'dashboard'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'issues' | 'prs' | 'dashboard' | 'deployments'>('dashboard');
 
   useEffect(() => {
     if (githubToken) {
@@ -155,6 +156,16 @@ export default function GithubPage() {
           >
             Pull Requests ({pullRequests.length})
           </button>
+          <button
+            onClick={() => setActiveTab('deployments')}
+            className={`px-4 py-2 font-medium text-sm transition-colors ${
+              activeTab === 'deployments'
+                ? 'text-blue-600 border-b-2 border-blue-600'
+                : 'text-gray-600 hover:text-foreground'
+            }`}
+          >
+            Deployments
+          </button>
         </div>
 
         {dataLoading ? (
@@ -260,6 +271,7 @@ export default function GithubPage() {
 
             {/* Dashboard Tab */}
             {activeTab === 'dashboard' && <GithubDashboard />}
+            {activeTab === 'deployments' && <LastDeployments />}
           </>
         )}
       </div>

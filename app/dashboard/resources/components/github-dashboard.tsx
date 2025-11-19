@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Github, Users, TrendingUp, Activity } from 'lucide-react';
 import { StatCard } from './stat-card';
+import LastDeployments from './last-deployments';
 import { useTokens } from '@/lib/token-context';
 
 export default function GithubDashboard() {
