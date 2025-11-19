@@ -104,7 +104,7 @@ const handleDisconnect = (id: string) => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4">
       <div className="bg-background rounded-2xl shadow-sm p-8 border border-gray-100">
         <div className="flex items-start justify-between mb-6">
           <div>
@@ -226,7 +226,7 @@ const handleDisconnect = (id: string) => {
         )}
 
         {activeTab === 'integrations' && (
-          <div className="space-y-6">
+          <div className="space-y-6 h-screen">
             <div className="flex flex-col space-y-2 mb-8 border border-white rounded-lg p-4 text-sm">
               <h4 className="font-medium text-foreground">Where to find your tokens:</h4>
               <a href="https://vercel.com/account/tokens" target="_blank" rel="noopener noreferrer" 
