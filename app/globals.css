@@ -150,5 +150,9 @@ header{
 }
 ::-webkit-scrollbar-thumb{
   background: var(--foreground);
+  cursor: grab;
   border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:active{
+  cursor: grabbing;
 }
